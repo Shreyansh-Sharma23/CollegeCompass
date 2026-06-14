@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Results - CollegeCompass</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fc;
+        }
+
+        nav {
+            background: #1e3a8a;
+            color: white;
+            padding: 20px 50px;
+        }
+
+        nav h2 {
+            font-size: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 40px 0;
+            color: #1e3a8a;
+        }
+
+        .results-container {
+            width: 80%;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            color: #1e3a8a;
+            margin-bottom: 15px;
+        }
+
+        .info {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .back-btn {
+            display: block;
+            width: 250px;
+            margin: 30px auto;
+            text-align: center;
+            background: #2563eb;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background: #1d4ed8;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav>
+        <h2>🎓 CollegeCompass</h2>
+    </nav>
+
+    <h1>Matching Colleges</h1>
+
+    <div class="results-container">
+
+        {% for college in colleges %}
+
+        <div class="card">
+
+            <h2>{{ college.name }}</h2>
+
+            <p class="info">
+                💰 Fees: ₹{{ college.fees }}
+            </p>
+
+            <p class="info">
+                🎓 Course: {{ college.course }}
+            </p>
+
+            <p class="info">
+                💻 Branch: {{ college.branch }}
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+        <a href="/colleges" class="back-btn">
+            Search Again
+        </a>
+
+    </div>
+
+</body>
+
+</html>
