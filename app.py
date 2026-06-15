@@ -1,27 +1,7 @@
 from flask import Flask, render_template, request
+import sqlite3
 
 app = Flask(__name__)
-
-colleges = [
-    {
-        "name": "JECRC Jaipur",
-        "course": "BTech",
-        "branch": "CSE",
-        "fees": 220000
-    },
-    {
-        "name": "LNMIIT Jaipur",
-        "course": "BTech",
-        "branch": "CSE",
-        "fees": 450000
-    },
-    {
-        "name": "SKIT Jaipur",
-        "course": "BTech",
-        "branch": "IT",
-        "fees": 180000
-    }
-]
 
 @app.route("/")
 def home():
@@ -31,7 +11,6 @@ def home():
 def college_page():
     return render_template("colleges.html")
 
-
 @app.route("/search", methods=["POST"])
 def search():
 
@@ -39,22 +18,25 @@ def search():
     branch = request.form["branch"]
     budget = int(request.form["budget"])
 
-    result = []
+    conn = sqlite3.connect("college.db")
+    cursor = conn.cursor()
 
-    for college in colleges:
+    cursor.execute("""
+    SELECT *
+    FROM colleges
+    WHERE course = ?
+    AND branch = ?
+    AND fees <= ?
+    """, (course, branch, budget))
 
-        if (
-            college["course"] == course
-            and college["branch"] == branch
-            and college["fees"] <= budget
-        ):
-            result.append(college)
+    colleges = cursor.fetchall()
+
+    conn.close()
 
     return render_template(
         "results.html",
-        colleges=result
+        colleges=colleges
     )
-
 
 if __name__ == "__main__":
     app.run(debug=True)

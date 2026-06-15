@@ -83,28 +83,53 @@
     <h1>Matching Colleges</h1>
 
     <div class="results-container">
+        {% if colleges %}
 
         {% for college in colleges %}
 
         <div class="card">
 
-            <h2>{{ college.name }}</h2>
+    <h2>{{ college[1] }}</h2>
 
-            <p class="info">
-                💰 Fees: ₹{{ college.fees }}
-            </p>
+    <p class="info">
+        📍 City: {{ college[2] }}
+    </p>
 
-            <p class="info">
-                🎓 Course: {{ college.course }}
-            </p>
+    <p class="info">
+        🎓 Course: {{ college[3] }}
+    </p>
 
-            <p class="info">
-                💻 Branch: {{ college.branch }}
-            </p>
+    <p class="info">
+        💻 Branch: {{ college[4] }}
+    </p>
 
-        </div>
+   <p class="info">
+    💰 Fees: ₹{{ "{:,}".format(college[5]) }}
+</p>
+
+    <p class="info">
+        📊 Average Package: {{ college[6] }}
+    </p>
+
+    <p class="info">
+        🏆 Highest Package: {{ college[7] }}
+    </p>
+
+    <p class="info">
+        📈 Placement: {{ college[8] }}
+    </p>
+
+</div>
 
         {% endfor %}
+        {% else %}
+
+<div class="card">
+    <h2>No Colleges Found 😔</h2>
+    <p>Try increasing your budget or changing your branch.</p>
+</div>
+
+{% endif %}
 
         <a href="/colleges" class="back-btn">
             Search Again
