@@ -2,28 +2,180 @@
 <html>
 
 <head>
-    <title>{{ college[1] }}</title>
+    <title>{{ college[1] }} - CollegeCompass</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fc;
+        }
+
+        nav {
+            background: #1e3a8a;
+            color: white;
+            padding: 20px 50px;
+        }
+
+        nav h2 {
+            font-size: 30px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #2563eb, #1e3a8a);
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .hero h1 {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .container {
+            width: 85%;
+            margin: 40px auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            color: #1e3a8a;
+            margin-bottom: 20px;
+        }
+
+        .info {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            flex: 1;
+            min-width: 220px;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-box h3 {
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+
+        .stat-box p {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .back-btn:hover {
+            background: #1d4ed8;
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>{{ college[1] }}</h1>
+    <nav>
+        <h2>🎓 CollegeCompass</h2>
+    </nav>
 
-    <p>📍 City: {{ college[2] }}</p>
+    <div class="hero">
+        <h1>{{ college[1] }}</h1>
+        <p>📍 {{ college[2] }}</p>
+    </div>
 
-    <p>🎓 Course: {{ college[3] }}</p>
+    <div class="container">
 
-    <p>💻 Branch: {{ college[4] }}</p>
+        <div class="stats">
 
-    <p>💰 Fees: ₹{{ college[5] }}</p>
+            <div class="stat-box">
+                <h3>💰 Fees</h3>
+                <p>₹{{ college[5] }}</p>
+            </div>
 
-    <p>📊 Average Package: {{ college[6] }}</p>
+            <div class="stat-box">
+                <h3>📊 Avg Package</h3>
+                <p>{{ college[6] }}</p>
+            </div>
 
-    <p>🏆 Highest Package: {{ college[7] }}</p>
+            <div class="stat-box">
+                <h3>🏆 Highest Package</h3>
+                <p>{{ college[7] }}</p>
+            </div>
 
-    <p>📈 Placement: {{ college[8] }}</p>
+            <div class="stat-box">
+                <h3>📈 Placement</h3>
+                <p>{{ college[8] }}</p>
+            </div>
 
-    <a href="/colleges">Back to Search</a>
+        </div>
+
+        <div class="card">
+
+            <h2>🏫 College Overview</h2>
+
+            <p class="info">🎓 Course: {{ college[3] }}</p>
+
+            <p class="info">💻 Branch: {{ college[4] }}</p>
+
+            {% if college|length > 9 %}
+            <p class="info">🏠 Hostel Fee: ₹{{ college[9] }}</p>
+            {% endif %}
+
+            {% if college|length > 10 %}
+            <p class="info">🏆 NIRF Rank: {{ college[10] }}</p>
+            {% endif %}
+
+            {% if college|length > 11 %}
+            <p class="info">📅 Established: {{ college[11] }}</p>
+            {% endif %}
+
+            {% if college|length > 12 %}
+            <p class="info">🌐 Website: {{ college[12] }}</p>
+            {% endif %}
+
+            <a href="/colleges" class="back-btn">
+                ← Back to Search
+            </a>
+
+        </div>
+
+    </div>
 
 </body>
 
