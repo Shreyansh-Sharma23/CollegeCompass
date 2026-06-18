@@ -12,12 +12,12 @@ CREATE TABLE IF NOT EXISTS colleges(
     course TEXT,
     branch TEXT,
     fees INTEGER,
-    avg_package TEXT,
+    avg_package REAL,
     highest_package TEXT,
-    placement TEXT
+    placement TEXT,
+    roi REAL
 )
 """)
-
 conn.commit()
 
 print("Database Created Successfully!")
