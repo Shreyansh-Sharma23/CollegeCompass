@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>College Comparison</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#f4f7fc;
+        }
+
+        nav{
+            background:#1e3a8a;
+            color:white;
+            padding:20px 50px;
+        }
+
+        nav h2{
+            font-size:30px;
+        }
+.nav-container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-size:18px;
+    transition:0.3s;
+}
+
+.nav-links a:hover{
+    color:#bfdbfe;
+}
+        .container{
+    width:90%;
+    max-width:1200px;
+    margin:40px auto;
+}
+
+        .winner-card{
+            background:white;
+            padding:25px;
+            border-radius:15px;
+            box-shadow:0px 4px 15px rgba(0,0,0,0.1);
+            margin-bottom:30px;
+            text-align:center;
+        }
+
+        .winner-card h1{
+            color:#1e3a8a;
+        }
+
+        .comparison-card{
+            background:white;
+            padding:30px;
+            border-radius:15px;
+            box-shadow:0px 4px 15px rgba(0,0,0,0.1);
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        th{
+            background:#2563eb;
+            color:white;
+            padding:15px;
+            font-size:18px;
+        }
+
+        td{
+            padding:15px;
+            text-align:center;
+            border-bottom:1px solid #ddd;
+        }
+
+        tr:hover{
+            background:#f9fafb;
+        }
+
+        .better{
+            background:#dcfce7;
+            font-weight:bold;
+            color:#166534;
+        }
+
+        .back-btn{
+            display:inline-block;
+            margin-top:20px;
+            background:#2563eb;
+            color:white;
+            text-decoration:none;
+            padding:12px 25px;
+            border-radius:8px;
+        }
+
+        .back-btn:hover{
+            background:#1d4ed8;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<nav>
+    <div class="nav-container">
+
+        <h2>🎓 CollegeCompass</h2>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/colleges">Find Colleges</a>
+            <a href="/compare">Compare Colleges</a>
+        </div>
+
+    </div>
+</nav>
+
+<div class="container">
+
+    {% if college1[9] > college2[9] %}
+        <div class="winner-card">
+            <h1>🏆 {{ college1[1] }} Wins on ROI</h1>
+        </div>
+    {% else %}
+        <div class="winner-card">
+            <h1>🏆 {{ college2[1] }} Wins on ROI</h1>
+        </div>
+    {% endif %}
+
+    <div class="comparison-card">
+
+        <table>
+
+            <tr>
+                <th>Feature</th>
+                <th>{{ college1[1] }}</th>
+                <th>{{ college2[1] }}</th>
+            </tr>
+
+            <tr>
+                <td>📍 City</td>
+                <td>{{ college1[2] }}</td>
+                <td>{{ college2[2] }}</td>
+            </tr>
+
+            <tr>
+                <td>💰 Fees</td>
+
+                {% if college1[5] < college2[5] %}
+                    <td class="better">₹{{ "{:,}".format(college1[5]) }}</td>
+                    <td>₹{{ "{:,}".format(college2[5]) }}</td>
+                {% else %}
+                    <td>₹{{ "{:,}".format(college1[5]) }}</td>
+                    <td class="better">₹{{ "{:,}".format(college2[5]) }}</td>
+                {% endif %}
+
+            </tr>
+
+            <tr>
+                <td>📊 Average Package</td>
+
+                {% if college1[6] > college2[6] %}
+                    <td class="better">{{ college1[6] }} LPA</td>
+                    <td>{{ college2[6] }} LPA</td>
+                {% else %}
+                    <td>{{ college1[6] }} LPA</td>
+                    <td class="better">{{ college2[6] }} LPA</td>
+                {% endif %}
+
+            </tr>
+
+            <tr>
+                <td>🏆 Highest Package</td>
+                <td>{{ college1[7] }}</td>
+                <td>{{ college2[7] }}</td>
+            </tr>
+
+            <tr>
+                <td>📈 Placement</td>
+                <td>{{ college1[8] }}</td>
+                <td>{{ college2[8] }}</td>
+            </tr>
+
+            <tr>
+                <td>⭐ ROI Score</td>
+
+                {% if college1[9] > college2[9] %}
+                    <td class="better">{{ college1[9] }}</td>
+                    <td>{{ college2[9] }}</td>
+                {% else %}
+                    <td>{{ college1[9] }}</td>
+                    <td class="better">{{ college2[9] }}</td>
+                {% endif %}
+
+            </tr>
+
+        </table>
+
+        <a href="/compare" class="back-btn">
+            ← Compare Again
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

@@ -17,24 +17,47 @@
         }
 
         nav {
-            background: #1e3a8a;
-            color: white;
-            padding: 20px 50px;
-        }
+    background: #1e3a8a;
+    color: white;
+    padding: 20px 50px;
+}
 
-        nav h2 {
-            font-size: 30px;
-        }
+nav h2 {
+    font-size: 30px;
+}
 
-        .container {
-            width: 500px;
-            margin: 60px auto;
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
-        }
+.nav-container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
 
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-size:18px;
+    transition:0.3s;
+}
+
+.nav-links a:hover{
+    color:#bfdbfe;
+}
+
+       .container {
+    width: 500px;
+    margin: 60px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+
+    transition: 0.3s;
+}
+
+.container:hover{
+    transform: translateY(-3px);
+}
         h1 {
             text-align: center;
             color: #1e3a8a;
@@ -74,9 +97,19 @@
 
 <body>
 
-    <nav>
+   <nav>
+    <div class="nav-container">
+
         <h2>🎓 CollegeCompass</h2>
-    </nav>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/colleges">Find Colleges</a>
+            <a href="/compare">Compare Colleges</a>
+        </div>
+
+    </div>
+</nav>
 
     <div class="container">
 
