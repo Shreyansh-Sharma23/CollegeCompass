@@ -88,6 +88,19 @@ nav a:hover {
     text-align: center;
     transition: 0.3s;
 }
+.feature-link{
+    text-decoration:none;
+    color:inherit;
+}
+
+.feature-link .card{
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.feature-link .card:hover{
+    transform:translateY(-8px);
+}
 
 .card:hover {
     transform: translateY(-8px);
@@ -158,13 +171,20 @@ nav a:hover {
             </p>
         </div>
 
-        <div class="card">
-            <h3>📊 College Comparison</h3>
-            <p>
-                Compare colleges side by side
-                before making a decision.
-            </p>
-        </div>
+      <a href="/compare" class="feature-link">
+
+    <div class="card">
+
+        <h3>📊 College Comparison</h3>
+
+        <p>
+            Compare colleges side by side
+            before making a decision.
+        </p>
+
+    </div>
+
+</a>
 
     </div>
 
