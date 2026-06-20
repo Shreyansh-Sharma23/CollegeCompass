@@ -107,6 +107,9 @@ def compare_result():
         college1=college1,
         college2=college2
     )
+@app.route("/scholarships")
+def scholarships():
+    return render_template("scholarships.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
