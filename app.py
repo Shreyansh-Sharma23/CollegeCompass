@@ -109,7 +109,48 @@ def compare_result():
     )
 @app.route("/scholarships")
 def scholarships():
-    return render_template("scholarships.html")
 
+    conn = sqlite3.connect("college.db")
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM scholarships")
+
+    scholarships = cursor.fetchall()
+
+    conn.close()
+
+    return render_template(
+        "scholarships.html",
+        scholarships=scholarships
+    )
+
+@app.route("/scholarship-result", methods=["POST"])
+def scholarship_result():
+
+    boards = int(request.form["boards"])
+    jee = int(request.form["jee"])
+    cuet = int(request.form["cuet"])
+
+    eligible = []
+
+    if boards >= 90:
+        eligible.append(
+            ("Merit Scholarship", "50% Fee Waiver")
+        )
+
+    if jee >= 95:
+        eligible.append(
+            ("JEE Excellence Scholarship", "₹1,00,000")
+        )
+
+    if cuet >= 85:
+        eligible.append(
+            ("CUET Merit Scholarship", "₹50,000")
+        )
+
+    return render_template(
+        "scholarship_result.html",
+        scholarships=eligible
+    )
 if __name__ == "__main__":
     app.run(debug=True)

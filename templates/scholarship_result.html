@@ -1,0 +1,13 @@
+<h1>Eligible Scholarships</h1>
+
+{% for scholarship in scholarships %}
+
+<div class="card">
+
+    <h2>{{ scholarship[0] }}</h2>
+
+    <p>{{ scholarship[1] }}</p>
+
+</div>
+
+{% endfor %}
