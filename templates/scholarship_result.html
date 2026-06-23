@@ -1,13 +1,207 @@
-<h1>Eligible Scholarships</h1>
+<!DOCTYPE html>
+<html>
 
-{% for scholarship in scholarships %}
+<head>
+    <title>Scholarship Results - CollegeCompass</title>
 
-<div class="card">
+    <style>
 
-    <h2>{{ scholarship[0] }}</h2>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
 
-    <p>{{ scholarship[1] }}</p>
+        body{
+            background:#f4f7fc;
+        }
+
+        nav{
+            background:#1e3a8a;
+            color:white;
+            padding:20px 50px;
+        }
+
+        .nav-container{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        nav h2{
+            font-size:30px;
+        }
+
+        .nav-links a{
+            color:white;
+            text-decoration:none;
+            margin-left:20px;
+            font-size:18px;
+            font-weight:bold;
+            transition:0.3s;
+        }
+
+        .nav-links a:hover{
+            color:#bfdbfe;
+        }
+
+        .hero{
+            text-align:center;
+            padding:60px 20px;
+        }
+
+        .hero h1{
+            color:#1e3a8a;
+            font-size:48px;
+            margin-bottom:10px;
+        }
+
+        .hero p{
+            color:#555;
+            font-size:20px;
+        }
+
+        .container{
+            width:90%;
+            max-width:1200px;
+            margin:auto;
+        }
+
+        .result-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+            gap:25px;
+            margin-top:30px;
+        }
+
+        .card{
+            background:white;
+            padding:25px;
+            border-radius:15px;
+            box-shadow:0px 4px 15px rgba(0,0,0,0.1);
+            transition:0.3s;
+        }
+
+        .card:hover{
+            transform:translateY(-8px);
+        }
+
+        .card h2{
+            color:#1e3a8a;
+            margin-bottom:15px;
+        }
+
+        .benefit{
+            display:inline-block;
+            background:#dcfce7;
+            color:#166534;
+            padding:8px 15px;
+            border-radius:20px;
+            font-weight:bold;
+            margin-top:10px;
+        }
+
+        .empty-card{
+            background:white;
+            padding:40px;
+            border-radius:15px;
+            text-align:center;
+            box-shadow:0px 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .back-btn{
+            display:block;
+            width:250px;
+            margin:40px auto;
+            text-align:center;
+            background:#2563eb;
+            color:white;
+            padding:15px;
+            border-radius:10px;
+            text-decoration:none;
+            font-size:18px;
+        }
+
+        .back-btn:hover{
+            background:#1d4ed8;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<nav>
+
+    <div class="nav-container">
+
+        <h2>🎓 CollegeCompass</h2>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/colleges">Find Colleges</a>
+            <a href="/compare">Compare Colleges</a>
+            <a href="/scholarships">Scholarships</a>
+        </div>
+
+    </div>
+
+</nav>
+
+<div class="hero">
+
+    <h1>🎉 Eligible Scholarships</h1>
+
+    <p>
+        Scholarships you qualify for based on your scores.
+    </p>
 
 </div>
 
-{% endfor %}
+<div class="container">
+
+    {% if scholarships %}
+
+    <div class="result-grid">
+
+        {% for scholarship in scholarships %}
+
+        <div class="card">
+
+            <h2>{{ scholarship[0] }}</h2>
+
+            <div class="benefit">
+                💰 {{ scholarship[1] }}
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="empty-card">
+
+        <h2>No Scholarships Found 😔</h2>
+
+        <p>
+            You currently don't meet the eligibility criteria for the available scholarships.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+    <a href="/scholarships" class="back-btn">
+        🔍 Check Again
+    </a>
+
+</div>
+
+</body>
+
+</html>
