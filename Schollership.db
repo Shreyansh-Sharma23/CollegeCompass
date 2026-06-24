@@ -1,0 +1,7 @@
+CREATE TABLE scholarships(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    eligibility TEXT,
+    benefit TEXT,
+    last_date TEXT
+)

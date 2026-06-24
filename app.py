@@ -152,5 +152,50 @@ def scholarship_result():
         "scholarship_result.html",
         scholarships=eligible
     )
+@app.route("/predictor")
+def predictor():
+    return render_template("predictor.html")
+@app.route("/predict-result", methods=["POST"])
+def predict_result():
+
+    rank = int(request.form["rank"])
+    branch = request.form["branch"]
+
+    conn = sqlite3.connect("college.db")
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "SELECT * FROM cutoffs WHERE branch=?",
+        (branch,)
+    )
+
+    colleges = cursor.fetchall()
+
+    conn.close()
+
+    results = []
+
+    for college in colleges:
+
+        if rank <= college[5]:
+            status = "🔴 Ambitious"
+
+        elif rank <= college[4]:
+            status = "🟡 Moderate"
+
+        elif rank <= college[3]:
+            status = "🟢 Safe"
+
+        else:
+            status = "❌ Low Chance"
+
+        results.append(
+            (college[1], status)
+        )
+
+    return render_template(
+        "predict_result.html",
+        results=results
+    )
 if __name__ == "__main__":
     app.run(debug=True)

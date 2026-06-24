@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Admission Prediction Results</title>
+</head>
+
+<body>
+
+```
+<h1>Admission Prediction Results</h1>
+
+{% for college in results %}
+
+    <h3>{{ college[0] }}</h3>
+
+    <p>{{ college[1] }}</p>
+
+    <hr>
+
+{% endfor %}
+```
+
+</body>
+
+</html>
