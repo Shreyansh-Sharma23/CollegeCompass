@@ -55,6 +55,9 @@ def college_profile(college_id):
 
     college = cursor.fetchone()
 
+    print("College ID:", college_id)
+    print("College Data:", college)
+
     conn.close()
 
     return render_template(
@@ -196,6 +199,81 @@ def predict_result():
     return render_template(
         "predict_result.html",
         results=results
+    )
+@app.route("/fit-score")
+def fit_score():
+    return render_template("fit_score.html")
+@app.route("/fit-score-result", methods=["POST"])
+def fit_score_result():
+
+    rank = int(request.form["rank"])
+    budget = int(request.form["budget"])
+    branch = request.form["branch"]
+
+    conn = sqlite3.connect("college.db")
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT *
+        FROM colleges
+        WHERE branch=?
+    """,(branch,))
+
+    colleges = cursor.fetchall()
+
+    conn.close()
+
+    scores=[]
+
+    for college in colleges:
+
+        score = 0
+
+        # Budget
+        if budget >= college[5]:
+            score += 30
+
+        # Placement
+        placement = int(college[8].replace("%",""))
+
+        if placement >= 90:
+            score += 30
+
+        elif placement >= 80:
+            score += 20
+
+        # ROI
+
+        if college[9] >= 3:
+            score += 25
+
+        elif college[9] >=2:
+            score +=20
+
+        else:
+            score +=10
+
+        # Rank
+
+        if rank <=50000:
+            score +=15
+
+        elif rank<=100000:
+            score+=10
+
+        else:
+            score+=5
+
+        scores.append((college,score))
+
+    scores.sort(
+        key=lambda x:x[1],
+        reverse=True
+    )
+
+    return render_template(
+        "fit_score_result.html",
+        scores=scores
     )
 if __name__ == "__main__":
     app.run(debug=True)

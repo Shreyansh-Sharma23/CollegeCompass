@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>Compare Colleges - CollegeCompass</title>
+    <title>College Fit Score - CollegeCompass</title>
 
 ```
 <style>
@@ -12,7 +12,7 @@
         margin:0;
         padding:0;
         box-sizing:border-box;
-        font-family:Arial, sans-serif;
+        font-family:Arial,sans-serif;
     }
 
     body{
@@ -25,14 +25,14 @@
         padding:20px 50px;
     }
 
-    nav h2{
-        font-size:30px;
-    }
-
     .nav-container{
         display:flex;
         justify-content:space-between;
         align-items:center;
+    }
+
+    nav h2{
+        font-size:30px;
     }
 
     .nav-links a{
@@ -40,7 +40,7 @@
         text-decoration:none;
         margin-left:20px;
         font-size:18px;
-        transition:0.3s;
+        font-weight:bold;
     }
 
     .nav-links a:hover{
@@ -55,7 +55,7 @@
     .hero h1{
         color:#1e3a8a;
         font-size:48px;
-        margin-bottom:15px;
+        margin-bottom:10px;
     }
 
     .hero p{
@@ -63,9 +63,9 @@
         font-size:20px;
     }
 
-    .compare-card{
-        width:70%;
-        max-width:800px;
+    .fit-card{
+        width:600px;
+        max-width:90%;
         margin:auto;
         background:white;
         padding:40px;
@@ -85,7 +85,7 @@
         font-size:18px;
     }
 
-    select{
+    input,select{
         width:100%;
         padding:15px;
         border:1px solid #ddd;
@@ -93,7 +93,7 @@
         font-size:16px;
     }
 
-    .compare-btn{
+    .fit-btn{
         width:100%;
         padding:15px;
         background:#2563eb;
@@ -104,16 +104,8 @@
         cursor:pointer;
     }
 
-    .compare-btn:hover{
+    .fit-btn:hover{
         background:#1d4ed8;
-    }
-
-    .vs{
-        text-align:center;
-        font-size:28px;
-        font-weight:bold;
-        color:#2563eb;
-        margin:20px 0;
     }
 
 </style>
@@ -124,18 +116,19 @@
 <body>
 
 <nav>
-    <div class="nav-container">
 
 ```
+<div class="nav-container">
+
     <h2>🎓 CollegeCompass</h2>
 
     <div class="nav-links">
         <a href="/">Home</a>
         <a href="/colleges">Find Colleges</a>
         <a href="/compare">Compare Colleges</a>
-         <a href="/scholarships">Scholarships</a>
-    <a href="/predictor">Admission Predictor</a>
-    <a href="/fit-score">College Fit Score</a>
+        <a href="/scholarships">Scholarships</a>
+        <a href="/predictor">Admission Predictor</a>
+        <a href="/fit-score">College Fit Score</a>
     </div>
 
 </div>
@@ -146,62 +139,64 @@
 <div class="hero">
 
 ```
-<h1>Compare Colleges</h1>
+<h1>⭐ College Fit Score</h1>
 
 <p>
-    Compare placements, fees, ROI, packages and more.
+    Get personalized college recommendations based on your profile.
 </p>
 ```
 
 </div>
 
-<div class="compare-card">
+<div class="fit-card">
+
+<form action="/fit-score-result" method="POST">
 
 ```
-<form action="/compare-result" method="POST">
+<div class="form-group">
 
-    <div class="form-group">
+    <label>JEE Rank</label>
 
-        <label>🏫 Select First College</label>
+    <input
+        type="number"
+        name="rank"
+        placeholder="Enter your JEE Rank"
+        required>
 
-        <select name="college1" required>
+</div>
 
-            {% for college in colleges %}
-            <option value="{{ college[0] }}">
-                {{ college[1] }}
-            </option>
-            {% endfor %}
+<div class="form-group">
 
-        </select>
+    <label>Budget (Per Year)</label>
 
-    </div>
+    <input
+        type="number"
+        name="budget"
+        placeholder="Enter your Budget"
+        required>
 
-    <div class="vs">
-        VS
-    </div>
+</div>
 
-    <div class="form-group">
+<div class="form-group">
 
-        <label>🏫 Select Second College</label>
+    <label>Preferred Branch</label>
 
-        <select name="college2" required>
+    <select name="branch">
 
-            {% for college in colleges %}
-            <option value="{{ college[0] }}">
-                {{ college[1] }}
-            </option>
-            {% endfor %}
+        <option>CSE</option>
+        <option>IT</option>
+        <option>Mechanical</option>
 
-        </select>
+    </select>
 
-    </div>
+</div>
 
-    <button type="submit" class="compare-btn">
-        Compare Colleges 🚀
-    </button>
+<button type="submit" class="fit-btn">
+    Calculate Fit Score ⭐
+</button>
+```
 
 </form>
-```
 
 </div>
 
