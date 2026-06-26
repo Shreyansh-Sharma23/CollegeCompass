@@ -25,42 +25,64 @@
         nav h2 {
             font-size: 30px;
         }
-        .nav-container{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
 
-.nav-links a{
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
-    font-size:18px;
-    font-weight:bold;
-    transition:0.3s;
-}
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.nav-links a:hover{
-    color:#bfdbfe;
-}
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #bfdbfe;
+        }
 
         h1 {
             text-align: center;
             margin: 40px 0;
             color: #1e3a8a;
         }
-.results-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-}
+
+        .summary-card {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .summary-card h3 {
+            color: #1e3a8a;
+            margin-bottom: 15px;
+        }
+
+        .summary-card p {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .results-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
 
         .card {
             background: white;
             padding: 25px;
             margin-bottom: 20px;
             border-radius: 15px;
-            box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
             transition: 0.3s;
         }
 
@@ -127,92 +149,172 @@
         .back-btn:hover {
             background: #1d4ed8;
         }
+        .college-buttons{
+    margin-top:20px;
+}
+
+.college-btn{
+    display:block;
+    margin-bottom:12px;
+    padding:14px 18px;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    font-size:18px;
+    transition:0.3s;
+}
+
+.college-btn:hover{
+    background:#1d4ed8;
+    transform:translateX(5px);
+}
     </style>
 
 </head>
 
 <body>
 
-   <nav>
-    <div class="nav-container">
+    <nav>
+        <div class="nav-container">
 
-        <h2>🎓 CollegeCompass</h2>
+            <h2>🎓 CollegeCompass</h2>
 
-        <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/colleges">Find Colleges</a>
-            <a href="/compare">Compare Colleges</a>
-             <a href="/scholarships">Scholarships</a>
-    <a href="/predictor">Admission Predictor</a>
-    <a href="/fit-score">College Fit Score</a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/colleges">Find Colleges</a>
+                <a href="/compare">Compare Colleges</a>
+                <a href="/scholarships">Scholarships</a>
+                <a href="/predictor">Admission Predictor</a>
+                <a href="/fit-score">College Fit Score</a>
+            </div>
+
         </div>
+    </nav>
+    <h1>Matching Colleges</h1>
+    <div class="summary-card">
+
+        <h3>🔍 Search Summary</h3>
+
+        <p><strong>Course:</strong> {{ course }}</p>
+
+        <p><strong>Branch:</strong> {{ branch }}</p>
+
+        <p><strong>City:</strong>
+            {% if city %}
+            {{ city }}
+            {% else %}
+            All Cities
+            {% endif %}
+        </p>
+
+        <p><strong>Budget:</strong> ₹{{ "{:,}".format(budget) }}</p>
+
+        <p><strong>Sorted By:</strong>
+            <hr style="margin:20px 0;">
+
+        <p><strong>Available Colleges:</strong></p>
+
+        {% if college_names %}
+
+       <div class="college-buttons">
+
+{% for college in college_names %}
+
+<a href="/college/{{ college[0] }}" class="college-btn">
+    🏫 {{ college[1] }} →
+</a>
+
+{% endfor %}
+
+</div>
+
+        {% else %}
+
+        <p>No colleges available.</p>
+
+        {% endif %}
+
+        {% if sort=="roi" %}
+        Highest ROI
+
+        {% elif sort=="fees" %}
+        Lowest Fees
+
+        {% elif sort=="placement" %}
+        Highest Placement
+
+        {% elif sort=="package" %}
+        Highest Average Package
+
+        {% endif %}
+
+        </p>
 
     </div>
-</nav>
-    <h1>Matching Colleges</h1>
 
     <div class="results-container">
 
         {% if colleges %}
 
-            {% for college in colleges %}
+        {% for college in colleges %}
 
-            <div class="card">
+        <div class="card">
 
-                <h2>
-                    <a href="/college/{{ college[0] }}">
-                        {{ college[1] }}
-                    </a>
-                </h2>
-
-                <div class="roi">
-                    ⭐ ROI Score: {{ college[9] }}
-                </div>
-
-                <p class="info">
-                    📍 City: {{ college[2] }}
-                </p>
-
-                <p class="info">
-                    🎓 Course: {{ college[3] }}
-                </p>
-
-                <p class="info">
-                    💻 Branch: {{ college[4] }}
-                </p>
-
-                <p class="info">
-                    💰 Fees: ₹{{ "{:,}".format(college[5]) }}
-                </p>
-
-                <p class="info">
-                    📊 Average Package: {{ college[6] }} LPA
-                </p>
-
-                <p class="info">
-                    🏆 Highest Package: {{ college[7] }}
-                </p>
-
-                <p class="info">
-                    📈 Placement: {{ college[8] }}
-                </p>
-
-                <a href="/college/{{ college[0] }}" class="view-btn">
-                    View Details →
+            <h2>
+                <a href="/college/{{ college[0] }}">
+                    {{ college[1] }}
                 </a>
+            </h2>
 
+            <div class="roi">
+                ⭐ ROI Score: {{ college[9] }}
             </div>
 
-            {% endfor %}
+            <p class="info">
+                📍 City: {{ college[2] }}
+            </p>
+
+            <p class="info">
+                🎓 Course: {{ college[3] }}
+            </p>
+
+            <p class="info">
+                💻 Branch: {{ college[4] }}
+            </p>
+
+            <p class="info">
+                💰 Fees: ₹{{ "{:,}".format(college[5]) }}
+            </p>
+
+            <p class="info">
+                📊 Average Package: {{ college[6] }} LPA
+            </p>
+
+            <p class="info">
+                🏆 Highest Package: {{ college[7] }}
+            </p>
+
+            <p class="info">
+                📈 Placement: {{ college[8] }}
+            </p>
+
+            <a href="/college/{{ college[0] }}" class="view-btn">
+                View Details →
+            </a>
+
+        </div>
+
+        {% endfor %}
 
         {% else %}
 
-            <div class="card">
-                <h2>No Colleges Found 😔</h2>
-                <p class="info">
-                    Try increasing your budget or changing your branch.
-                </p>
-            </div>
+        <div class="card">
+            <h2>No Colleges Found 😔</h2>
+            <p class="info">
+                Try increasing your budget or changing your branch.
+            </p>
+        </div>
 
         {% endif %}
 

@@ -13,7 +13,6 @@ def home():
 def college_page():
     return render_template("colleges.html")
 
-
 @app.route("/search", methods=["POST"])
 def search():
 
@@ -21,27 +20,73 @@ def search():
     branch = request.form["branch"]
     budget = int(request.form["budget"])
 
+    city = request.form["city"]
+    sort = request.form["sort"]
+
     conn = sqlite3.connect("college.db")
     cursor = conn.cursor()
 
-    cursor.execute("""
+    query = """
     SELECT *
     FROM colleges
     WHERE course = ?
     AND branch = ?
     AND fees <= ?
-    """, (course, branch, budget))
+    """
+
+    params = [course, branch, budget]
+
+    if city != "":
+        query += " AND city = ?"
+        params.append(city)
+
+    if sort == "roi":
+        query += " ORDER BY roi DESC"
+
+    elif sort == "fees":
+        query += " ORDER BY fees ASC"
+
+    elif sort == "package":
+        query += " ORDER BY avg_package DESC"
+
+    elif sort == "placement":
+        query += " ORDER BY placement DESC"
+
+    cursor.execute(query, params)
 
     colleges = cursor.fetchall()
+
+    if city == "":
+        cursor.execute("""
+        SELECT id, name
+        FROM colleges
+        WHERE course = ?
+        AND branch = ?
+        """, (course, branch))
+
+    else:
+        cursor.execute("""
+        SELECT id, name
+        FROM colleges
+        WHERE course = ?
+        AND branch = ?
+        AND city = ?
+        """, (course, branch, city))
+
+    college_names = cursor.fetchall()
 
     conn.close()
 
     return render_template(
         "results.html",
-        colleges=colleges
+        colleges=colleges,
+        college_names=college_names,
+        course=course,
+        branch=branch,
+        city=city,
+        budget=budget,
+        sort=sort
     )
-
-
 @app.route("/college/<int:college_id>")
 def college_profile(college_id):
 

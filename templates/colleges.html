@@ -17,47 +17,48 @@
         }
 
         nav {
-    background: #1e3a8a;
-    color: white;
-    padding: 20px 50px;
-}
+            background: #1e3a8a;
+            color: white;
+            padding: 20px 50px;
+        }
 
-nav h2 {
-    font-size: 30px;
-}
+        nav h2 {
+            font-size: 30px;
+        }
 
-.nav-container{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.nav-links a{
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
-    font-size:18px;
-    transition:0.3s;
-}
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 18px;
+            transition: 0.3s;
+        }
 
-.nav-links a:hover{
-    color:#bfdbfe;
-}
+        .nav-links a:hover {
+            color: #bfdbfe;
+        }
 
-       .container {
-    width: 500px;
-    margin: 60px auto;
-    background: white;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+        .container {
+            width: 500px;
+            margin: 60px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 
-    transition: 0.3s;
-}
+            transition: 0.3s;
+        }
 
-.container:hover{
-    transform: translateY(-3px);
-}
+        .container:hover {
+            transform: translateY(-3px);
+        }
+
         h1 {
             text-align: center;
             color: #1e3a8a;
@@ -97,22 +98,22 @@ nav h2 {
 
 <body>
 
-   <nav>
-    <div class="nav-container">
+    <nav>
+        <div class="nav-container">
 
-        <h2>🎓 CollegeCompass</h2>
+            <h2>🎓 CollegeCompass</h2>
 
-        <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/colleges">Find Colleges</a>
-            <a href="/compare">Compare Colleges</a>
-             <a href="/scholarships">Scholarships</a>
-    <a href="/predictor">Admission Predictor</a>
-    <a href="/fit-score">College Fit Score</a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/colleges">Find Colleges</a>
+                <a href="/compare">Compare Colleges</a>
+                <a href="/scholarships">Scholarships</a>
+                <a href="/predictor">Admission Predictor</a>
+                <a href="/fit-score">College Fit Score</a>
+            </div>
+
         </div>
-
-    </div>
-</nav>
+    </nav>
 
     <div class="container">
 
@@ -135,10 +136,44 @@ nav h2 {
                 <option>IT</option>
                 <option>Mechanical</option>
             </select>
+            <label>City</label>
+
+            <select name="city">
+                <option value="">All Cities</option>
+                <option>Jaipur</option>
+                <option>Dehradun</option>
+                <option>Noida</option>
+                <option>Patiala</option>
+                <option>Chennai</option>
+                <option>Vellore</option>
+                <option>Mohali</option>
+                <option>Jalandhar</option>
+            </select>
 
             <label>Budget (Per Year)</label>
 
             <input type="number" name="budget">
+            <label>Sort By</label>
+
+            <select name="sort">
+
+                <option value="roi">
+                    Highest ROI
+                </option>
+
+                <option value="placement">
+                    Highest Placement
+                </option>
+
+                <option value="fees">
+                    Lowest Fees
+                </option>
+
+                <option value="package">
+                    Highest Average Package
+                </option>
+
+            </select>
 
             <button type="submit">
                 Search Colleges
