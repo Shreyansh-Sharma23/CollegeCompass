@@ -133,6 +133,22 @@
             background: #1d4ed8;
         }
 
+        .favorite-btn {
+            display: inline-block;
+            margin-top: 15px;
+            margin-left: 10px;
+            background: #ef4444;
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .favorite-btn:hover {
+            background: #dc2626;
+        }
+
         .back-btn {
             display: block;
             width: 250px;
@@ -149,26 +165,27 @@
         .back-btn:hover {
             background: #1d4ed8;
         }
-        .college-buttons{
-    margin-top:20px;
-}
 
-.college-btn{
-    display:block;
-    margin-bottom:12px;
-    padding:14px 18px;
-    background:#2563eb;
-    color:white;
-    text-decoration:none;
-    border-radius:10px;
-    font-size:18px;
-    transition:0.3s;
-}
+        .college-buttons {
+            margin-top: 20px;
+        }
 
-.college-btn:hover{
-    background:#1d4ed8;
-    transform:translateX(5px);
-}
+        .college-btn {
+            display: block;
+            margin-bottom: 12px;
+            padding: 14px 18px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .college-btn:hover {
+            background: #1d4ed8;
+            transform: translateX(5px);
+        }
     </style>
 
 </head>
@@ -187,6 +204,7 @@
                 <a href="/scholarships">Scholarships</a>
                 <a href="/predictor">Admission Predictor</a>
                 <a href="/fit-score">College Fit Score</a>
+                <a href="/favorites">❤️ Favorites</a>
             </div>
 
         </div>
@@ -211,45 +229,46 @@
         <p><strong>Budget:</strong> ₹{{ "{:,}".format(budget) }}</p>
 
         <p><strong>Sorted By:</strong>
-            <hr style="margin:20px 0;">
+
+            {% if sort=="roi" %}
+            Highest ROI
+
+            {% elif sort=="fees" %}
+            Lowest Fees
+
+            {% elif sort=="placement" %}
+            Highest Placement
+
+            {% elif sort=="package" %}
+            Highest Average Package
+
+            {% endif %}
+
+        </p>
+
+        <hr style="margin:20px 0;">
 
         <p><strong>Available Colleges:</strong></p>
 
         {% if college_names %}
 
-       <div class="college-buttons">
+        <div class="college-buttons">
 
-{% for college in college_names %}
+            {% for college in college_names %}
 
-<a href="/college/{{ college[0] }}" class="college-btn">
-    🏫 {{ college[1] }} →
-</a>
+            <a href="/college/{{ college[0] }}" class="college-btn">
+                🏫 {{ college[1] }} →
+            </a>
 
-{% endfor %}
+            {% endfor %}
 
-</div>
+        </div>
 
         {% else %}
 
         <p>No colleges available.</p>
 
         {% endif %}
-
-        {% if sort=="roi" %}
-        Highest ROI
-
-        {% elif sort=="fees" %}
-        Lowest Fees
-
-        {% elif sort=="placement" %}
-        Highest Placement
-
-        {% elif sort=="package" %}
-        Highest Average Package
-
-        {% endif %}
-
-        </p>
 
     </div>
 
@@ -301,6 +320,9 @@
 
             <a href="/college/{{ college[0] }}" class="view-btn">
                 View Details →
+            </a>
+            <a href="/favorite/{{ college[0] }}" class="favorite-btn">
+                ❤️ Add to Favorites
             </a>
 
         </div>

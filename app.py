@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from flask import redirect
 import sqlite3
 
 app = Flask(__name__)
@@ -320,5 +321,40 @@ def fit_score_result():
         "fit_score_result.html",
         scores=scores
     )
+@app.route("/favorite/<int:college_id>")
+def favorite(college_id):
+
+    conn = sqlite3.connect("college.db")
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "INSERT INTO favorites(college_id) VALUES(?)",
+        (college_id,)
+    )
+
+    conn.commit()
+    conn.close()
+@app.route("/favorites")
+def favorites():
+
+    conn = sqlite3.connect("college.db")
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    SELECT colleges.*
+    FROM favorites
+    JOIN colleges
+    ON favorites.college_id = colleges.id
+    """)
+
+    colleges = cursor.fetchall()
+
+    conn.close()
+
+    return render_template(
+        "favorites.html",
+        colleges=colleges
+    )
+    return redirect("/favorites")
 if __name__ == "__main__":
     app.run(debug=True)

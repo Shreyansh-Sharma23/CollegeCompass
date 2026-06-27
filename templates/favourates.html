@@ -1,0 +1,21 @@
+@app.route("/favorites")
+def favorites():
+
+    conn = sqlite3.connect("college.db")
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    SELECT colleges.*
+    FROM favorites
+    JOIN colleges
+    ON favorites.college_id = colleges.id
+    """)
+
+    colleges = cursor.fetchall()
+
+    conn.close()
+
+    return render_template(
+        "favorites.html",
+        colleges=colleges
+    )
