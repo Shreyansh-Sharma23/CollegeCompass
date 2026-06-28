@@ -1,153 +1,267 @@
 <!DOCTYPE html>
 <html>
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>CollegeCompass</title>
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial,sans-serif;
+            scroll-behavior:smooth;
         }
 
-        body {
-            background: #f4f7fc;
+        body{
+            background:#f4f7fc;
         }
 
-        nav {
-            background: #1e3a8a;
-            color: white;
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        /* ---------- Navbar ---------- */
+
+        nav{
+            background:#1e3a8a;
+            color:white;
+            padding:20px 50px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
         }
 
-        nav h2 {
-            font-size: 30px;
+        nav h2{
+            font-size:30px;
         }
 
-        nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 20px;
-    font-weight: bold;
-    transition: 0.3s;
+        nav a{
+            color:white;
+            text-decoration:none;
+            margin-left:20px;
+            font-weight:bold;
+            transition:.3s;
+        }
+
+        nav a:hover{
+            color:#bfdbfe;
+        }
+
+        /* ---------- Hero ---------- */
+
+        .hero{
+            text-align:center;
+            padding:120px 20px;
+        }
+
+        .hero h1{
+            font-size:55px;
+            color:#1e293b;
+            margin-bottom:20px;
+        }
+
+        .hero p{
+            font-size:22px;
+            color:#64748b;
+            margin-bottom:40px;
+        }
+
+        .btn{
+            display:inline-block;
+            background:#2563eb;
+            color:white;
+            text-decoration:none;
+            padding:15px 35px;
+            border-radius:10px;
+            font-size:18px;
+            transition:.3s;
+        }
+
+        .btn:hover{
+            background:#1d4ed8;
+        }
+
+        /* ---------- Section Title ---------- */
+
+        .section-title{
+            text-align:center;
+            color:#1e3a8a;
+            font-size:38px;
+            margin-top:40px;
+        }
+
+        /* ---------- Statistics ---------- */
+
+        .stats{
+            width:90%;
+            margin:40px auto;
+            display:flex;
+            justify-content:center;
+            gap:25px;
+            flex-wrap:wrap;
+        }
+
+        .stat-card{
+            width:220px;
+            background:white;
+            padding:30px;
+            text-align:center;
+            border-radius:15px;
+            box-shadow:0 4px 15px rgba(0,0,0,.1);
+            transition:.3s;
+        }
+
+        .stat-card:hover{
+            transform:translateY(-8px);
+        }
+
+        .stat-card h2{
+            color:#2563eb;
+            font-size:40px;
+            margin-bottom:10px;
+        }
+
+        .stat-card p{
+            color:#555;
+            font-size:20px;
+        }
+
+        /* ---------- Top Colleges ---------- */
+
+        .top-colleges{
+            width:90%;
+            margin:40px auto;
+            display:flex;
+            justify-content:center;
+            gap:30px;
+            flex-wrap:wrap;
+        }
+
+        .top-card{
+            width:300px;
+            background:white;
+            padding:30px;
+            border-radius:15px;
+            text-align:center;
+            box-shadow:0 4px 15px rgba(0,0,0,.1);
+            transition:.3s;
+        }
+
+        .top-card:hover{
+            transform:translateY(-8px);
+        }
+
+        .top-card h3{
+            color:#1e3a8a;
+            margin-bottom:15px;
+            font-size:26px;
+        }
+
+        .top-card p{
+            font-size:20px;
+            margin-bottom:20px;
+        }
+
+        .top-card .btn{
+            margin-top:10px;
+        }
+
+        /* ---------- Features ---------- */
+
+        .features{
+            display:flex;
+            justify-content:center;
+            gap:30px;
+            padding:50px;
+            flex-wrap:wrap;
+        }
+
+        .feature-link{
+            text-decoration:none;
+            color:inherit;
+        }
+
+        .card{
+            width:280px;
+            background:white;
+            padding:25px;
+            border-radius:15px;
+            text-align:center;
+            box-shadow:0 4px 15px rgba(0,0,0,.1);
+            transition:.3s;
+        }
+
+        .card:hover{
+            transform:translateY(-8px);
+        }
+
+        .card h3{
+            color:#1e3a8a;
+            margin-bottom:10px;
+        }
+
+        .card p{
+            color:#555;
+        }
+
+        /* ---------- Footer ---------- */
+
+        footer{
+            margin-top:50px;
+            background:#1e3a8a;
+            color:white;
+            text-align:center;
+            padding:20px;
+        }
+        html{
+    scroll-behavior:smooth;
 }
 
-nav a:hover {
-    color: #bfdbfe;
-}
-        .hero {
-            text-align: center;
-            padding: 120px 20px;
-        }
-
-        .hero h1 {
-            font-size: 55px;
-            color: #1e293b;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 22px;
-            color: #64748b;
-            margin-bottom: 40px;
-        }
-
-        .btn {
-            background: #2563eb;
-            color: white;
-            padding: 15px 35px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-size: 18px;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            background: #1d4ed8;
-        }
-
-        .features {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            padding: 50px;
-            flex-wrap: wrap;
-        }
-
-        .card {
-    background: white;
-    width: 280px;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
-    text-align: center;
-    transition: 0.3s;
-}
-.feature-link{
-    text-decoration:none;
-    color:inherit;
+.card,
+.top-card,
+.stat-card{
+    transition:.35s;
 }
 
-.feature-link .card{
-    cursor:pointer;
-    transition:0.3s;
+.card:hover,
+.top-card:hover,
+.stat-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
 }
 
-.feature-link .card:hover{
-    transform:translateY(-8px);
-}
-
-.card:hover {
-    transform: translateY(-8px);
-}
-
-        .card h3 {
-            margin-bottom: 10px;
-            color: #1e3a8a;
-        }
-
-        .card p {
-            color: #555;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #1e3a8a;
-            color: white;
-            margin-top: 50px;
-        }
     </style>
 
 </head>
 
 <body>
 
-    <nav>
-    <h2>🎓 CollegeCompass</h2>
+    <!-- Navbar -->
 
-    <div>
-        <a href="/">Home</a>
-        <a href="/colleges">Find Colleges</a>
-        <a href="/compare">Compare Colleges</a>
-          <a href="/scholarships">Scholarships</a>
-        <a href="/predictor">Admission Predictor</a>
-        <a href="/fit-score">College Fit Score</a>
-    </div>
-</nav>
+    <nav>
+
+        <h2>🎓 CollegeCompass</h2>
+
+        <div>
+            <a href="/">Home</a>
+            <a href="/colleges">Find Colleges</a>
+            <a href="/compare">Compare Colleges</a>
+            <a href="/scholarships">Scholarships</a>
+            <a href="/predictor">Admission Predictor</a>
+            <a href="/fit-score">College Fit Score</a>
+        </div>
+
+    </nav>
+
+    <!-- Hero Section -->
 
     <div class="hero">
 
         <h1>Find Your Perfect College</h1>
 
         <p>
-            Discover colleges based on placements, scholarships,
-            ROI, internships and more.
+            Discover colleges based on placements,
+            scholarships, ROI, internships and more.
         </p>
 
         <a href="/colleges" class="btn">
@@ -156,59 +270,159 @@ nav a:hover {
 
     </div>
 
-    <div class="features">
+    <!-- Statistics -->
 
-        <a href="/fit-score" class="feature-link">
+    <h2 class="section-title">📊 Platform Statistics</h2>
 
-    <div class="card">
+    <div class="stats">
 
-        <h3>⭐ College Fit Score</h3>
+        <div class="stat-card">
+            <h2>{{ total_colleges }}+</h2>
+            <p>Colleges</p>
+        </div>
 
-        <p>
-            Get personalized college recommendations
-            based on your rank, budget and branch.
-        </p>
+        <div class="stat-card">
+            <h2>{{ total_scholarships }}+</h2>
+            <p>Scholarships</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>{{ total_cities }}+</h2>
+            <p>Cities</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>10+</h2>
+            <p>Features</p>
+        </div>
 
     </div>
 
-</a>
+    <!-- Top Colleges -->
+
+    <h2 class="section-title">⭐ Top Colleges</h2>
+
+    <div class="top-colleges">
+
+        {% for college in top_colleges %}
+
+        <div class="top-card">
+
+            <h3>{{ college[1] }}</h3>
+
+            <p>⭐ ROI : {{ college[2] }}</p>
+
+            <a href="/college/{{ college[0] }}" class="btn">
+                View Details
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <!-- Features -->
+
+    <h2 class="section-title">🚀 Platform Features</h2>
+
+    <div class="features">
+
+        <a href="/colleges" class="feature-link">
+
+            <div class="card">
+
+                <h3>🎓 College Finder</h3>
+
+                <p>
+                    Search colleges based on budget,
+                    branch and city.
+                </p>
+
+            </div>
+
+        </a>
+
+        <a href="/compare" class="feature-link">
+
+            <div class="card">
+
+                <h3>📊 College Comparison</h3>
+
+                <p>
+                    Compare colleges side by side
+                    before making a decision.
+                </p>
+
+            </div>
+
+        </a>
 
         <a href="/scholarships" class="feature-link">
 
-    <div class="card">
+            <div class="card">
 
-        <h3>💰 Scholarship Finder</h3>
+                <h3>💰 Scholarship Finder</h3>
 
-        <p>
-            Find scholarships based on Boards,
-            JEE and CUET scores.
-        </p>
+                <p>
+                    Find scholarships based on
+                    Boards, JEE and CUET.
+                </p>
+
+            </div>
+
+        </a>
+
+        <a href="/predictor" class="feature-link">
+
+            <div class="card">
+
+                <h3>🎯 Admission Predictor</h3>
+
+                <p>
+                    Predict your admission chances
+                    using previous cutoffs.
+                </p>
+
+            </div>
+
+        </a>
+
+        <a href="/fit-score" class="feature-link">
+
+            <div class="card">
+
+                <h3>⭐ College Fit Score</h3>
+
+                <p>
+                    Get personalized college
+                    recommendations.
+                </p>
+
+            </div>
+
+        </a>
 
     </div>
 
-</a>
-
-      <a href="/compare" class="feature-link">
-
-    <div class="card">
-
-        <h3>📊 College Comparison</h3>
-
-        <p>
-            Compare colleges side by side
-            before making a decision.
-        </p>
-
-    </div>
-
-</a>
-
-    </div>
+    <!-- Footer -->
 
     <footer>
-        © 2026 CollegeCompass | Smart College Selection Platform
+
+        <h3>CollegeCompass</h3>
+
+        <br>
+
+        <p>
+            Smart College Selection Platform
+        </p>
+
+        <br>
+
+        <p>
+            © 2026 CollegeCompass
+        </p>
+
     </footer>
 
 </body>
-
-</html>

@@ -7,7 +7,40 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+
+    conn = sqlite3.connect("college.db")
+    cursor = conn.cursor()
+
+    # Total Colleges
+    cursor.execute("SELECT COUNT(*) FROM colleges")
+    total_colleges = cursor.fetchone()[0]
+
+    # Total Scholarships
+    cursor.execute("SELECT COUNT(*) FROM scholarships")
+    total_scholarships = cursor.fetchone()[0]
+
+    # Total Cities
+    cursor.execute("SELECT COUNT(DISTINCT city) FROM colleges")
+    total_cities = cursor.fetchone()[0]
+        # Top 3 Colleges by ROI
+    cursor.execute("""
+    SELECT id, name, roi
+    FROM colleges
+    ORDER BY roi DESC
+    LIMIT 3
+    """)
+
+    top_colleges = cursor.fetchall()
+
+    conn.close()
+
+    return render_template(
+    "index.html",
+    total_colleges=total_colleges,
+    total_scholarships=total_scholarships,
+    total_cities=total_cities,
+    top_colleges=top_colleges
+)
 
 
 @app.route("/colleges")
