@@ -246,31 +246,7 @@
 
         </p>
 
-        <hr style="margin:20px 0;">
-
-        <p><strong>Available Colleges:</strong></p>
-
-        {% if college_names %}
-
-        <div class="college-buttons">
-
-            {% for college in college_names %}
-
-            <a href="/college/{{ college[0] }}" class="college-btn">
-                🏫 {{ college[1] }} →
-            </a>
-
-            {% endfor %}
-
-        </div>
-
-        {% else %}
-
-        <p>No colleges available.</p>
-
-        {% endif %}
-
-    </div>
+     </div>
 
     <div class="results-container">
 
