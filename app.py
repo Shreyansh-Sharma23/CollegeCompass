@@ -389,5 +389,25 @@ def favorites():
         colleges=colleges
     )
     return redirect("/favorites")
+    @app.route("/placement")
+    def placement():
+
+        conn = sqlite3.connect("college.db")
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    SELECT name, city, avg_package, highest_package, placement
+    FROM colleges
+    ORDER BY avg_package DESC
+    """)
+
+    colleges = cursor.fetchall()
+
+    conn.close()
+
+    return render_template(
+        "placement.html",
+        colleges=colleges
+    )
 if __name__ == "__main__":
     app.run(debug=True)
