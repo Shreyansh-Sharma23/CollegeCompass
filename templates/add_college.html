@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Add College</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial,sans-serif;
+        }
+
+        body{
+            background:#f4f7fc;
+        }
+
+        .container{
+            width:600px;
+            margin:40px auto;
+            background:white;
+            padding:35px;
+            border-radius:15px;
+            box-shadow:0 5px 15px rgba(0,0,0,.1);
+        }
+
+        h1{
+            text-align:center;
+            color:#1e3a8a;
+            margin-bottom:30px;
+        }
+
+        label{
+            display:block;
+            margin-top:18px;
+            font-weight:bold;
+        }
+
+        input{
+            width:100%;
+            padding:12px;
+            margin-top:6px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            font-size:16px;
+        }
+
+        button{
+            width:100%;
+            margin-top:30px;
+            padding:14px;
+            background:#2563eb;
+            color:white;
+            border:none;
+            border-radius:8px;
+            font-size:18px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#1d4ed8;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Add New College</h1>
+
+<form action="/save-college" method="POST">
+
+<label>College Name</label>
+<input type="text" name="name" required>
+
+<label>City</label>
+<input type="text" name="city" required>
+
+<label>Course</label>
+<input type="text" name="course" required>
+
+<label>Branch</label>
+<input type="text" name="branch" required>
+
+<label>Fees</label>
+<input type="number" name="fees" required>
+
+<label>Average Package</label>
+<input type="number" step="0.1" name="avg_package" required>
+
+<label>Highest Package</label>
+<input type="text" name="highest_package" required>
+
+<label>Placement (%)</label>
+<input type="text" name="placement" placeholder="90%" required>
+
+<label>ROI</label>
+<input type="number" step="0.01" name="roi" required>
+
+<button type="submit">
+Save College
+</button>
+
+</form>
+
+</div>
+
+</body>
+
+</html>

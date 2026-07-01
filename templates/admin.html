@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Admin Panel</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial,sans-serif;
+        }
+
+        body{
+            background:#f4f7fc;
+        }
+
+        nav{
+            background:#1e3a8a;
+            color:white;
+            padding:20px 40px;
+        }
+
+        h1{
+            text-align:center;
+            margin:40px 0;
+            color:#1e3a8a;
+        }
+
+        .container{
+            width:90%;
+            margin:auto;
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:30px;
+        }
+
+        .card{
+            background:white;
+            padding:30px;
+            border-radius:15px;
+            text-align:center;
+            box-shadow:0 5px 15px rgba(0,0,0,.1);
+            transition:.3s;
+        }
+
+        .card:hover{
+            transform:translateY(-8px);
+        }
+
+        .card h2{
+            color:#1e3a8a;
+            margin-bottom:20px;
+        }
+
+        .btn{
+            display:inline-block;
+            margin-top:15px;
+            padding:12px 25px;
+            background:#2563eb;
+            color:white;
+            text-decoration:none;
+            border-radius:8px;
+        }
+
+        .btn:hover{
+            background:#1d4ed8;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<nav>
+
+<h2>🎓 CollegeCompass Admin</h2>
+
+</nav>
+
+<h1>Admin Dashboard</h1>
+
+<div class="container">
+
+<div class="card">
+
+<h2>➕ Add College</h2>
+
+<a href="/add-college" class="btn">
+Open
+</a>
+
+</div>
+
+<div class="card">
+
+<h2>📚 Manage Colleges</h2>
+
+<a href="/manage-colleges" class="btn">
+Open
+</a>
+
+</div>
+
+<div class="card">
+
+<h2>🎓 Add Scholarship</h2>
+
+<a href="/add-scholarship" class="btn">
+Open
+</a>
+
+</div>
+
+<div class="card">
+
+<h2>🏠 Back to Website</h2>
+
+<a href="/" class="btn">
+Home
+</a>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

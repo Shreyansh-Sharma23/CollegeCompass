@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from flask import redirect
 import sqlite3
 
@@ -388,11 +388,10 @@ def favorites():
         "favorites.html",
         colleges=colleges
     )
-    return redirect("/favorites")
-    @app.route("/placement")
-    def placement():
+   @app.route("/placement")
+def placement():
 
-        conn = sqlite3.connect("college.db")
+    conn = sqlite3.connect("college.db")
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -409,5 +408,52 @@ def favorites():
         "placement.html",
         colleges=colleges
     )
+@app.route("/admin")
+def admin():
+    return render_template("admin.html")
+
+
+@app.route("/add-college")
+def add_college():
+    return render_template("add_college.html")
+
+
+@app.route("/save-college", methods=["POST"])
+def save_college():
+
+    name = request.form["name"]
+    city = request.form["city"]
+    course = request.form["course"]
+    branch = request.form["branch"]
+    fees = int(request.form["fees"])
+    avg_package = float(request.form["avg_package"])
+    highest_package = request.form["highest_package"]
+    placement = request.form["placement"]
+    roi = float(request.form["roi"])
+
+    conn = sqlite3.connect("college.db")
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        INSERT INTO colleges
+        (name, city, course, branch, fees,
+         avg_package, highest_package, placement, roi)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, (
+        name,
+        city,
+        course,
+        branch,
+        fees,
+        avg_package,
+        highest_package,
+        placement,
+        roi
+    ))
+
+    conn.commit()
+    conn.close()
+
+    return redirect("/admin")
 if __name__ == "__main__":
     app.run(debug=True)
