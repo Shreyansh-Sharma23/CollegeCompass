@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Manage Colleges</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial,sans-serif;
+        }
+
+        body{
+            background:#f4f7fc;
+        }
+
+        nav{
+            background:#1e3a8a;
+            color:white;
+            padding:20px 40px;
+        }
+
+        h1{
+            text-align:center;
+            margin:30px;
+            color:#1e3a8a;
+        }
+
+        table{
+            width:95%;
+            margin:auto;
+            border-collapse:collapse;
+            background:white;
+            box-shadow:0 5px 15px rgba(0,0,0,.1);
+        }
+
+        th{
+            background:#2563eb;
+            color:white;
+            padding:15px;
+        }
+
+        td{
+            padding:15px;
+            text-align:center;
+            border-bottom:1px solid #ddd;
+        }
+
+        tr:hover{
+            background:#f1f5f9;
+        }
+
+        .edit-btn{
+            background:#16a34a;
+            color:white;
+            padding:8px 15px;
+            text-decoration:none;
+            border-radius:6px;
+            margin-right:5px;
+        }
+
+        .delete-btn{
+            background:#dc2626;
+            color:white;
+            padding:8px 15px;
+            text-decoration:none;
+            border-radius:6px;
+        }
+
+        .back-btn{
+            display:block;
+            width:220px;
+            margin:30px auto;
+            text-align:center;
+            background:#2563eb;
+            color:white;
+            padding:12px;
+            text-decoration:none;
+            border-radius:8px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<nav>
+
+<h2>🎓 CollegeCompass Admin</h2>
+
+</nav>
+
+<h1>Manage Colleges</h1>
+
+<table>
+
+<tr>
+
+    <th>ID</th>
+    <th>College Name</th>
+    <th>City</th>
+    <th>Branch</th>
+    <th>Fees</th>
+    <th>Actions</th>
+
+</tr>
+
+{% for college in colleges %}
+
+<tr>
+
+    <td>{{ college[0] }}</td>
+    <td>{{ college[1] }}</td>
+    <td>{{ college[2] }}</td>
+    <td>{{ college[4] }}</td>
+    <td>₹{{ "{:,}".format(college[5]) }}</td>
+
+    <td>
+
+        <a href="/edit-college/{{ college[0] }}" class="edit-btn">
+            ✏ Edit
+        </a>
+
+        <a href="/delete-college/{{ college[0] }}" class="delete-btn">
+            🗑 Delete
+        </a>
+
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<a href="/admin" class="back-btn">
+⬅ Back to Admin
+</a>
+
+</body>
+
+</html>         

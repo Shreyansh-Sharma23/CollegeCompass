@@ -388,7 +388,7 @@ def favorites():
         "favorites.html",
         colleges=colleges
     )
-   @app.route("/placement")
+@app.route("/placement")
 def placement():
 
     conn = sqlite3.connect("college.db")
@@ -455,5 +455,40 @@ def save_college():
     conn.close()
 
     return redirect("/admin")
+@app.route("/manage-colleges")
+def manage_colleges():
+
+    conn = sqlite3.connect("college.db")
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM colleges ORDER BY name")
+
+    colleges = cursor.fetchall()
+
+    conn.close()
+
+    return render_template(
+        "manage_colleges.html",
+        colleges=colleges
+    )
+@app.route("/edit-college/<int:college_id>")
+def edit_college(college_id):
+
+    conn = sqlite3.connect("college.db")
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "SELECT * FROM colleges WHERE id=?",
+        (college_id,)
+    )
+
+    college = cursor.fetchone()
+
+    conn.close()
+
+    return render_template(
+        "edit_college.html",
+        college=college
+    )
 if __name__ == "__main__":
     app.run(debug=True)
