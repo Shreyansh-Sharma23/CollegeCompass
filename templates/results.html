@@ -15,35 +15,96 @@
         body {
             background: #f4f7fc;
         }
+nav{
+    background:#1e3a8a;
+    padding:15px 25px;
+}
 
-        nav {
-            background: #1e3a8a;
-            color: white;
-            padding: 20px 50px;
-        }
+.nav-container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
 
-        nav h2 {
-            font-size: 30px;
-        }
+nav h2{
+    color:white;
+    font-size:28px;
+    white-space:nowrap;
+    margin-right:20px;
+}
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
 
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 18px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:bold;
+}
+.nav-container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
 
-        .nav-links a:hover {
-            color: #bfdbfe;
-        }
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    font-size:17px;
+}
+
+.dropdown{
+    position:relative;
+}
+
+.dropbtn{
+    background:none;
+    border:none;
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.dropdown-content{
+    display:none;
+    position:absolute;
+    right:0;
+    top:40px;
+    background:white;
+    min-width:230px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    overflow:hidden;
+    z-index:1000;
+}
+
+.dropdown-content a{
+    display:block;
+    padding:12px 18px;
+    color:#1e3a8a;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.dropdown-content a:hover{
+    background:#f3f4f6;
+}
+
+.dropdown:hover .dropdown-content{
+    display:block;
+}
 
         h1 {
             text-align: center;
@@ -192,24 +253,47 @@
 
 <body>
 
-    <nav>
-        <div class="nav-container">
+   <nav>
 
-            <h2>🎓 CollegeCompass</h2>
+    <div class="nav-container">
 
-            <div class="nav-links">
-                <a href="/">Home</a>
-                <a href="/colleges">Find Colleges</a>
-                <a href="/compare">Compare Colleges</a>
-                <a href="/scholarships">Scholarships</a>
-                <a href="/predictor">Admission Predictor</a>
-                <a href="/fit-score">College Fit Score</a>
-                <a href="/favorites">❤️ Favorites</a>
-                <a href="/placement">Placement Analytics</a>
+        <h2>🎓 CollegeCompass</h2>
+
+        <div class="nav-links">
+
+            <a href="/">Home</a>
+
+            <a href="/colleges">Find Colleges</a>
+
+            <a href="/compare">Compare Colleges</a>
+
+            <a href="/predictor">Predictor</a>
+
+            <div class="dropdown">
+
+                <button class="dropbtn">
+                    More ▼
+                </button>
+
+                <div class="dropdown-content">
+
+                    <a href="/scholarships">Scholarships</a>
+
+                    <a href="/fit-score">College Fit Score</a>
+
+                    <a href="/placement">Placement Analytics</a>
+
+                    <a href="/favorites">❤️ Favorites</a>
+
+                </div>
+
             </div>
 
         </div>
-    </nav>
+
+    </div>
+
+</nav>
     <h1>Matching Colleges</h1>
     <div class="summary-card">
 

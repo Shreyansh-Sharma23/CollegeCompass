@@ -1,9 +1,9 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 from flask import redirect
 import sqlite3
 
 app = Flask(__name__)
-
+app.secret_key = "collegecompass123"
 
 @app.route("/")
 def home():
@@ -489,6 +489,136 @@ def edit_college(college_id):
     return render_template(
         "edit_college.html",
         college=college
+    )
+@app.route("/update-college/<int:college_id>", methods=["POST"])
+def update_college(college_id):
+
+    name = request.form["name"]
+    city = request.form["city"]
+    course = request.form["course"]
+    branch = request.form["branch"]
+    fees = int(request.form["fees"])
+    avg_package = float(request.form["avg_package"])
+    highest_package = request.form["highest_package"]
+    placement = request.form["placement"]
+    roi = float(request.form["roi"])
+
+    conn = sqlite3.connect("college.db")
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        UPDATE colleges
+        SET
+            name=?,
+            city=?,
+            course=?,
+            branch=?,
+            fees=?,
+            avg_package=?,
+            highest_package=?,
+            placement=?,
+            roi=?
+        WHERE id=?
+    """, (
+        name,
+        city,
+        course,
+        branch,
+        fees,
+        avg_package,
+        highest_package,
+        placement,
+        roi,
+        college_id
+    ))
+
+    conn.commit()
+    conn.close()
+
+    return redirect("/manage-colleges")
+@app.route("/delete-college/<int:college_id>")
+def delete_college(college_id):
+
+    conn = sqlite3.connect("college.db")
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "DELETE FROM colleges WHERE id=?",
+        (college_id,)
+    )
+
+    conn.commit()
+    conn.close()
+
+    return redirect("/manage-colleges")
+@app.route("/register")
+def register():
+    return render_template("register.html")
+@app.route("/save-user", methods=["POST"])
+def save_user():
+
+    name = request.form["name"]
+    email = request.form["email"]
+    password = request.form["password"]
+
+    conn = sqlite3.connect("college.db")
+    cursor = conn.cursor()
+
+    try:
+        cursor.execute("""
+        INSERT INTO users(name, email, password)
+        VALUES (?, ?, ?)
+        """, (name, email, password))
+
+        conn.commit()
+
+    except sqlite3.IntegrityError:
+        conn.close()
+        return "Email already exists!"
+
+    conn.close()
+
+    return redirect("/login")
+@app.route("/login")
+def login():
+    return render_template("login.html")
+@app.route("/login-user", methods=["POST"])
+def login_user():
+
+    email = request.form["email"]
+    password = request.form["password"]
+
+    conn = sqlite3.connect("college.db")
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    SELECT * FROM users
+    WHERE email=? AND password=?
+    """, (email, password))
+
+    user = cursor.fetchone()
+
+    conn.close()
+
+    if user:
+
+        session["user_id"] = user[0]
+        session["user_name"] = user[1]
+        session["user_email"] = user[2]
+
+        return redirect("/profile")
+
+    return "Invalid Email or Password!"
+@app.route("/profile")
+def profile():
+
+    if "user_id" not in session:
+        return redirect("/login")
+
+    return render_template(
+        "profile.html",
+        name=session["user_name"],
+        email=session["user_email"]
     )
 if __name__ == "__main__":
     app.run(debug=True)

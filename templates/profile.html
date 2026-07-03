@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>My Profile</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#f4f7fc;
+}
+
+.container{
+    width:500px;
+    margin:60px auto;
+    background:white;
+    padding:40px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+h1{
+    color:#1e3a8a;
+    text-align:center;
+}
+
+p{
+    font-size:20px;
+    margin-top:20px;
+}
+
+.btn{
+    display:block;
+    margin-top:30px;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    padding:12px;
+    text-align:center;
+    border-radius:8px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>👤 My Profile</h1>
+
+<p><strong>Name:</strong> {{ name }}</p>
+
+<p><strong>Email:</strong> {{ email }}</p>
+
+<a href="/" class="btn">
+Go to Home
+</a>
+
+</div>
+
+</body>
+
+</html>
