@@ -3,62 +3,192 @@
 
 <head>
 
-<title>My Profile</title>
+    <title>My Profile - CollegeCompass</title>
 
-<style>
+    <style>
 
-body{
-    font-family:Arial;
-    background:#f4f7fc;
-}
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial,sans-serif;
+        }
 
-.container{
-    width:500px;
-    margin:60px auto;
-    background:white;
-    padding:40px;
-    border-radius:15px;
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
-}
+        body{
+            background:#f4f7fc;
+        }
 
-h1{
-    color:#1e3a8a;
-    text-align:center;
-}
+        nav{
+            background:#1e3a8a;
+            color:white;
+            padding:20px 40px;
+        }
 
-p{
-    font-size:20px;
-    margin-top:20px;
-}
+        nav h2{
+            font-size:30px;
+        }
 
-.btn{
-    display:block;
-    margin-top:30px;
-    background:#2563eb;
-    color:white;
-    text-decoration:none;
-    padding:12px;
-    text-align:center;
-    border-radius:8px;
-}
+        .container{
+            width:90%;
+            max-width:900px;
+            margin:40px auto;
+        }
 
-</style>
+        h1{
+            color:#1e3a8a;
+            margin-bottom:30px;
+            text-align:center;
+        }
+
+        .profile-card{
+            background:white;
+            padding:35px;
+            border-radius:15px;
+            box-shadow:0 5px 15px rgba(0,0,0,.1);
+        }
+
+        .profile-info{
+            margin-bottom:30px;
+        }
+
+        .profile-info p{
+            font-size:20px;
+            margin:15px 0;
+        }
+
+        .stats{
+            display:flex;
+            justify-content:center;
+            gap:25px;
+            flex-wrap:wrap;
+            margin:35px 0;
+        }
+
+        .stat-card{
+            background:white;
+            width:220px;
+            padding:25px;
+            border-radius:15px;
+            text-align:center;
+            box-shadow:0 5px 15px rgba(0,0,0,.1);
+        }
+
+        .stat-card h2{
+            color:#2563eb;
+            font-size:40px;
+            margin-bottom:10px;
+        }
+
+        .stat-card p{
+            font-size:18px;
+            color:#555;
+        }
+
+        .buttons{
+            display:flex;
+            justify-content:center;
+            gap:20px;
+            flex-wrap:wrap;
+            margin-top:35px;
+        }
+
+        .btn{
+            text-decoration:none;
+            background:#2563eb;
+            color:white;
+            padding:14px 28px;
+            border-radius:8px;
+            font-size:17px;
+            transition:.3s;
+        }
+
+        .btn:hover{
+            background:#1d4ed8;
+        }
+
+        .logout{
+            background:#dc2626;
+        }
+
+        .logout:hover{
+            background:#b91c1c;
+        }
+
+    </style>
 
 </head>
 
 <body>
 
+<nav>
+
+    <h2>🎓 CollegeCompass</h2>
+
+</nav>
+
 <div class="container">
 
-<h1>👤 My Profile</h1>
+    <h1>👤 My Profile</h1>
 
-<p><strong>Name:</strong> {{ name }}</p>
+    <div class="profile-card">
 
-<p><strong>Email:</strong> {{ email }}</p>
+        <div class="profile-info">
 
-<a href="/" class="btn">
-Go to Home
-</a>
+            <p><strong>Name:</strong> {{ name }}</p>
+
+            <p><strong>Email:</strong> {{ email }}</p>
+
+        </div>
+
+    </div>
+
+    <div class="stats">
+
+        <div class="stat-card">
+
+            <h2>{{ favorite_count }}</h2>
+
+            <p>❤️ Saved Colleges</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h2>Student</h2>
+
+            <p>Account Type</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h2>2026</h2>
+
+            <p>Member Since</p>
+
+        </div>
+
+    </div>
+
+    <div class="buttons">
+
+        <a href="/" class="btn">
+            🏠 Home
+        </a>
+
+        <a href="/favorites" class="btn">
+            ❤️ Favorites
+        </a>
+
+        <a href="/colleges" class="btn">
+            🎓 Find Colleges
+        </a>
+
+        <a href="/logout" class="btn logout">
+            🚪 Logout
+        </a>
+
+    </div>
 
 </div>
 

@@ -615,10 +615,26 @@ def profile():
     if "user_id" not in session:
         return redirect("/login")
 
+    conn = sqlite3.connect("college.db")
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT COUNT(*) FROM favorites")
+
+    favorite_count = cursor.fetchone()[0]
+
+    conn.close()
+
     return render_template(
         "profile.html",
         name=session["user_name"],
-        email=session["user_email"]
+        email=session["user_email"],
+        favorite_count=favorite_count
     )
+@app.route("/logout")
+def logout():
+
+    session.clear()
+
+    return redirect("/")        
 if __name__ == "__main__":
     app.run(debug=True)
