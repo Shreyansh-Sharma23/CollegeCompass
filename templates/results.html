@@ -1,412 +1,85 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-    <title>Results - CollegeCompass</title>
+{% block content %}
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+<div class="results-container">
 
-        body {
-            background: #f4f7fc;
-        }
-nav{
-    background:#1e3a8a;
-    padding:15px 25px;
-}
+    <h1 class="page-title">🎓 Available Colleges</h1>
 
-.nav-container{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
+    {% if colleges %}
 
-nav h2{
-    color:white;
-    font-size:28px;
-    white-space:nowrap;
-    margin-right:20px;
-}
+        {% for college in colleges %}
 
-.nav-links{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
+        <div class="college-result">
 
-.nav-links a{
-    color:white;
-    text-decoration:none;
-    font-size:14px;
-    font-weight:bold;
-}
-.nav-container{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
+            <div class="college-left">
 
-.nav-links{
-    display:flex;
-    align-items:center;
-    gap:20px;
-}
+                <h2>{{ college[1] }}</h2>
 
-.nav-links a{
-    color:white;
-    text-decoration:none;
-    font-weight:bold;
-    font-size:17px;
-}
+                <p class="location">📍 {{ college[2] }}</p>
 
-.dropdown{
-    position:relative;
-}
+                <div class="tags">
 
-.dropbtn{
-    background:none;
-    border:none;
-    color:white;
-    font-size:17px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.dropdown-content{
-    display:none;
-    position:absolute;
-    right:0;
-    top:40px;
-    background:white;
-    min-width:230px;
-    border-radius:10px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.2);
-    overflow:hidden;
-    z-index:1000;
-}
-
-.dropdown-content a{
-    display:block;
-    padding:12px 18px;
-    color:#1e3a8a;
-    text-decoration:none;
-    font-weight:bold;
-}
-
-.dropdown-content a:hover{
-    background:#f3f4f6;
-}
-
-.dropdown:hover .dropdown-content{
-    display:block;
-}
-
-        h1 {
-            text-align: center;
-            margin: 40px 0;
-            color: #1e3a8a;
-        }
-
-        .summary-card {
-            width: 90%;
-            max-width: 1200px;
-            margin: 20px auto;
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .summary-card h3 {
-            color: #1e3a8a;
-            margin-bottom: 15px;
-        }
-
-        .summary-card p {
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        .results-container {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        .card {
-            background: white;
-            padding: 25px;
-            margin-bottom: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card h2 {
-            margin-bottom: 10px;
-        }
-
-        .card h2 a {
-            color: #1e3a8a;
-            text-decoration: none;
-        }
-
-        .card h2 a:hover {
-            color: #2563eb;
-        }
-
-        .roi {
-            display: inline-block;
-            background: #e0f2fe;
-            color: #0369a1;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .info {
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        .view-btn {
-            display: inline-block;
-            margin-top: 15px;
-            background: #2563eb;
-            color: white;
-            text-decoration: none;
-            padding: 10px 18px;
-            border-radius: 8px;
-            transition: 0.3s;
-        }
-
-        .view-btn:hover {
-            background: #1d4ed8;
-        }
-
-        .favorite-btn {
-            display: inline-block;
-            margin-top: 15px;
-            margin-left: 10px;
-            background: #ef4444;
-            color: white;
-            text-decoration: none;
-            padding: 10px 18px;
-            border-radius: 8px;
-            transition: 0.3s;
-        }
-
-        .favorite-btn:hover {
-            background: #dc2626;
-        }
-
-        .back-btn {
-            display: block;
-            width: 250px;
-            margin: 30px auto;
-            text-align: center;
-            background: #2563eb;
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 18px;
-        }
-
-        .back-btn:hover {
-            background: #1d4ed8;
-        }
-
-        .college-buttons {
-            margin-top: 20px;
-        }
-
-        .college-btn {
-            display: block;
-            margin-bottom: 12px;
-            padding: 14px 18px;
-            background: #2563eb;
-            color: white;
-            text-decoration: none;
-            border-radius: 10px;
-            font-size: 18px;
-            transition: 0.3s;
-        }
-
-        .college-btn:hover {
-            background: #1d4ed8;
-            transform: translateX(5px);
-        }
-    </style>
-
-</head>
-
-<body>
-
-   <nav>
-
-    <div class="nav-container">
-
-        <h2>🎓 CollegeCompass</h2>
-
-        <div class="nav-links">
-
-            <a href="/">Home</a>
-
-            <a href="/colleges">Find Colleges</a>
-
-            <a href="/compare">Compare Colleges</a>
-
-            <a href="/predictor">Predictor</a>
-
-            <div class="dropdown">
-
-                <button class="dropbtn">
-                    More ▼
-                </button>
-
-                <div class="dropdown-content">
-
-                    <a href="/scholarships">Scholarships</a>
-
-                    <a href="/fit-score">College Fit Score</a>
-
-                    <a href="/placement">Placement Analytics</a>
-
-                    <a href="/favorites">❤️ Favorites</a>
+                    <span class="tag">🎓 {{ college[3] }}</span>
+                    <span class="tag">💻 {{ college[4] }}</span>
+                    <span class="tag roi">⭐ ROI {{ college[9] }}</span>
 
                 </div>
 
             </div>
 
-        </div>
+            <div class="college-middle">
 
-    </div>
+                <div class="info-box">
+                    <span>💰 Fees</span>
+                    <strong>₹{{ college[5] }}</strong>
+                </div>
 
-</nav>
-    <h1>Matching Colleges</h1>
-    <div class="summary-card">
+                <div class="info-box">
+                    <span>📈 Avg Package</span>
+                    <strong>{{ college[6] }} LPA</strong>
+                </div>
 
-        <h3>🔍 Search Summary</h3>
+                <div class="info-box">
+                    <span>🏆 Highest</span>
+                    <strong>{{ college[7] }}</strong>
+                </div>
 
-        <p><strong>Course:</strong> {{ course }}</p>
+                <div class="info-box">
+                    <span>✅ Placement</span>
+                    <strong>{{ college[8] }}</strong>
+                </div>
 
-        <p><strong>Branch:</strong> {{ branch }}</p>
-
-        <p><strong>City:</strong>
-            {% if city %}
-            {{ city }}
-            {% else %}
-            All Cities
-            {% endif %}
-        </p>
-
-        <p><strong>Budget:</strong> ₹{{ "{:,}".format(budget) }}</p>
-
-        <p><strong>Sorted By:</strong>
-
-            {% if sort=="roi" %}
-            Highest ROI
-
-            {% elif sort=="fees" %}
-            Lowest Fees
-
-            {% elif sort=="placement" %}
-            Highest Placement
-
-            {% elif sort=="package" %}
-            Highest Average Package
-
-            {% endif %}
-
-        </p>
-
-     </div>
-
-    <div class="results-container">
-
-        {% if colleges %}
-
-        {% for college in colleges %}
-
-        <div class="card">
-
-            <h2>
-                <a href="/college/{{ college[0] }}">
-                    {{ college[1] }}
-                </a>
-            </h2>
-
-            <div class="roi">
-                ⭐ ROI Score: {{ college[9] }}
             </div>
 
-            <p class="info">
-                📍 City: {{ college[2] }}
-            </p>
+            <div class="college-right">
 
-            <p class="info">
-                🎓 Course: {{ college[3] }}
-            </p>
+                <a href="/college/{{ college[0] }}" class="btn">
+                    View Details →
+                </a>
 
-            <p class="info">
-                💻 Branch: {{ college[4] }}
-            </p>
-
-            <p class="info">
-                💰 Fees: ₹{{ "{:,}".format(college[5]) }}
-            </p>
-
-            <p class="info">
-                📊 Average Package: {{ college[6] }} LPA
-            </p>
-
-            <p class="info">
-                🏆 Highest Package: {{ college[7] }}
-            </p>
-
-            <p class="info">
-                📈 Placement: {{ college[8] }}
-            </p>
-
-            <a href="/college/{{ college[0] }}" class="view-btn">
-                View Details →
-            </a>
-            <a href="/favorite/{{ college[0] }}" class="favorite-btn">
-                ❤️ Add to Favorites
-            </a>
+            </div>
 
         </div>
 
         {% endfor %}
 
-        {% else %}
+    {% else %}
 
-        <div class="card">
+        <div class="no-results">
+
             <h2>No Colleges Found 😔</h2>
-            <p class="info">
-                Try increasing your budget or changing your branch.
-            </p>
+
+            <p>Try changing your filters.</p>
+
+            <a href="/colleges" class="btn">
+                Search Again
+            </a>
+
         </div>
 
-        {% endif %}
+    {% endif %}
 
-        <a href="/colleges" class="back-btn">
-            Search Again
-        </a>
+</div>
 
-    </div>
-
-</body>
-
-</html>
+{% endblock %}

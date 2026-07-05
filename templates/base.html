@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CollegeCompass</title>
+    <link rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}">
+
+   
+
+</head>
+
+<body>
+
+<nav>
+
+    <h2>🎓 CollegeCompass</h2>
+
+    <div class="nav-links">
+
+        <a href="/">Home</a>
+
+        <a href="/colleges">Find Colleges</a>
+
+        <a href="/compare">Compare Colleges</a>
+
+        <div class="dropdown">
+
+            <button class="dropbtn">
+                More ▼
+            </button>
+
+            <div class="dropdown-content">
+
+                <a href="/scholarships">
+                    Scholarships
+                </a>
+
+                <a href="/predictor">
+                    Admission Predictor
+                </a>
+
+                <a href="/fit-score">
+                    College Fit Score
+                </a>
+
+                <a href="/placement">
+                    Placement Analytics
+                </a>
+
+            </div>
+
+        </div>
+
+        {% if session.get("user_id") %}
+
+        <div class="dropdown">
+
+            <button class="dropbtn">
+                👤 {{ session["user_name"] }} ▼
+            </button>
+
+            <div class="dropdown-content">
+
+                <a href="/profile">
+                    👤 My Profile
+                </a>
+
+                <a href="/favorites">
+                    ❤️ Favorites
+                </a>
+
+                <a href="/logout">
+                    🚪 Logout
+                </a>
+
+            </div>
+
+        </div>
+
+        {% else %}
+
+        <a href="/login">Login</a>
+
+        <a href="/register">Register</a>
+
+        {% endif %}
+
+    </div>
+
+</nav>
+
+<!-- ================= PAGE CONTENT ================= -->
+
+{% block content %}
+
+{% endblock %}
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    © 2026 CollegeCompass | Smart College Selection Platform
+
+</footer>
+
+</body>
+
+</html>

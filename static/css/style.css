@@ -1,0 +1,364 @@
+/* =====================================================
+   COLLEGECOMPASS - MAIN STYLESHEET
+===================================================== */
+
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f7fc;
+    color:#1f2937;
+}
+
+a{
+    text-decoration:none;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+nav{
+    background:#1e3a8a;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 40px;
+}
+
+nav h2{
+    color:white;
+    font-size:30px;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.nav-links a{
+    color:white;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#bfdbfe;
+}
+
+
+/* =====================================================
+   DROPDOWN
+===================================================== */
+
+.dropdown{
+    position:relative;
+}
+
+.dropbtn{
+    background:none;
+    border:none;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.dropdown-content{
+    display:none;
+    position:absolute;
+    top:35px;
+    right:0;
+    background:white;
+    min-width:220px;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+    z-index:1000;
+}
+
+.dropdown-content a{
+    display:block;
+    padding:14px;
+    color:#1e3a8a;
+    font-weight:bold;
+}
+
+.dropdown-content a:hover{
+    background:#f3f4f6;
+}
+
+.dropdown:hover .dropdown-content{
+    display:block;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.btn,
+button{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:14px 30px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.3s;
+    font-size:16px;
+}
+
+.btn:hover,
+button:hover{
+    background:#1d4ed8;
+}
+
+
+/* =====================================================
+   SECTION TITLES
+===================================================== */
+
+.section-title{
+    text-align:center;
+    font-size:38px;
+    color:#1e3a8a;
+    margin:50px 0 30px;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+    background:#1e3a8a;
+    color:white;
+    text-align:center;
+    padding:25px;
+    margin-top:60px;
+}
+/* =====================================================
+   COLLEGE FINDER PAGE
+===================================================== */
+
+.container{
+    width:90%;
+    max-width:700px;
+    margin:60px auto;
+    background:white;
+    padding:40px;
+    border-radius:18px;
+    box-shadow:0 5px 18px rgba(0,0,0,.12);
+}
+
+.container h1{
+    text-align:center;
+    color:#1e3a8a;
+    margin-bottom:30px;
+    font-size:38px;
+}
+
+form{
+    display:flex;
+    flex-direction:column;
+}
+
+label{
+    font-size:18px;
+    font-weight:bold;
+    color:#1e3a8a;
+    margin-top:18px;
+    margin-bottom:8px;
+}
+
+input,
+select{
+    width:100%;
+    padding:14px;
+    font-size:16px;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    outline:none;
+    transition:.3s;
+}
+
+input:focus,
+select:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 5px rgba(37,99,235,.3);
+}
+
+form button{
+    margin-top:30px;
+    width:100%;
+}
+/* ===========================================
+   RESULTS PAGE
+=========================================== */
+
+.results-container{
+    width:90%;
+    max-width:1200px;
+    margin:50px auto;
+}
+
+.page-title{
+    text-align:center;
+    color:#1e3a8a;
+    font-size:42px;
+    margin-bottom:40px;
+}
+
+.college-result{
+    background:white;
+    border-radius:18px;
+    padding:25px 30px;
+    margin-bottom:25px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:30px;
+
+    box-shadow:0 5px 18px rgba(0,0,0,.1);
+    transition:.3s;
+}
+
+.college-result:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.college-left{
+    flex:2;
+}
+
+.college-left h2{
+    color:#1e3a8a;
+    margin-bottom:10px;
+    font-size:30px;
+}
+
+.location{
+    color:#666;
+    margin-bottom:15px;
+}
+
+.tags{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.tag{
+    background:#e0edff;
+    color:#1e3a8a;
+    padding:8px 16px;
+    border-radius:30px;
+    font-weight:bold;
+    font-size:14px;
+}
+
+.roi{
+    background:#fff5cc;
+    color:#b8860b;
+}
+
+.college-middle{
+    flex:2;
+
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.info-box{
+    background:#f8fafc;
+    border-radius:12px;
+    padding:12px;
+    text-align:center;
+}
+
+.info-box span{
+    display:block;
+    color:#777;
+    font-size:14px;
+}
+
+.info-box strong{
+    display:block;
+    margin-top:6px;
+    font-size:18px;
+    color:#1e293b;
+}
+
+.college-right{
+    flex:1;
+    text-align:right;
+}
+
+.college-right .btn{
+    padding:14px 24px;
+}
+
+.no-results{
+    width:500px;
+    margin:60px auto;
+    text-align:center;
+    background:white;
+    padding:40px;
+    border-radius:18px;
+    box-shadow:0 5px 18px rgba(0,0,0,.1);
+}
+
+.no-results p{
+    margin:20px 0;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+    .college-result{
+
+        flex-direction:column;
+        text-align:center;
+
+    }
+
+    .college-middle{
+
+        grid-template-columns:1fr 1fr;
+        width:100%;
+
+    }
+
+    .college-right{
+
+        text-align:center;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .college-middle{
+
+        grid-template-columns:1fr;
+
+    }
+
+}

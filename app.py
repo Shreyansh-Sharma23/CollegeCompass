@@ -4,6 +4,9 @@ import sqlite3
 
 app = Flask(__name__)
 app.secret_key = "collegecompass123"
+@app.context_processor
+def inject_session():
+    return dict(session=session)
 
 @app.route("/")
 def home():

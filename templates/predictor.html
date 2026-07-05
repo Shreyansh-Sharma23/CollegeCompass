@@ -1,195 +1,54 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<html>
-
-<head>
-    <title>Admission Predictor - CollegeCompass</title>
-
-```
-<style>
-
-    *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
-        font-family:Arial,sans-serif;
-    }
-
-    body{
-        background:#f4f7fc;
-    }
-
-    nav{
-        background:#1e3a8a;
-        color:white;
-        padding:20px 50px;
-    }
-
-    .nav-container{
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-    }
-
-    nav h2{
-        font-size:30px;
-    }
-
-    .nav-links a{
-        color:white;
-        text-decoration:none;
-        margin-left:20px;
-        font-size:18px;
-        font-weight:bold;
-    }
-
-    .nav-links a:hover{
-        color:#bfdbfe;
-    }
-
-    .hero{
-        text-align:center;
-        padding:60px 20px;
-    }
-
-    .hero h1{
-        color:#1e3a8a;
-        font-size:48px;
-        margin-bottom:10px;
-    }
-
-    .hero p{
-        color:#555;
-        font-size:20px;
-    }
-
-    .predictor-card{
-        width:600px;
-        max-width:90%;
-        margin:auto;
-        background:white;
-        padding:40px;
-        border-radius:20px;
-        box-shadow:0px 4px 15px rgba(0,0,0,0.1);
-    }
-
-    .form-group{
-        margin-bottom:25px;
-    }
-
-    label{
-        display:block;
-        margin-bottom:10px;
-        font-weight:bold;
-        color:#1e3a8a;
-        font-size:18px;
-    }
-
-    input, select{
-        width:100%;
-        padding:15px;
-        border:1px solid #ddd;
-        border-radius:10px;
-        font-size:16px;
-    }
-
-    .predict-btn{
-        width:100%;
-        padding:15px;
-        background:#2563eb;
-        color:white;
-        border:none;
-        border-radius:10px;
-        font-size:18px;
-        cursor:pointer;
-    }
-
-    .predict-btn:hover{
-        background:#1d4ed8;
-    }
-
-</style>
-```
-
-</head>
-
-<body>
-
-<nav>
-
-```
-<div class="nav-container">
-
-    <h2>🎓 CollegeCompass</h2>
-
-    <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/colleges">Find Colleges</a>
-        <a href="/compare">Compare Colleges</a>
-        <a href="/scholarships">Scholarships</a>
-        <a href="/predictor">Admission Predictor</a>
-        <a href="/fit-score">College Fit Score</a>
-        <a href="/placement">Placement Analytics</a>
-    </div>
-
-</div>
-```
-
-</nav>
+{% block content %}
 
 <div class="hero">
 
-```
-<h1>🎯 Admission Predictor</h1>
+    <h1>🎯 Admission Predictor</h1>
 
-<p>
-    Predict your admission chances using previous year cutoff trends.
-</p>
-```
+    <p>
+        Predict your admission chances using previous year cutoff trends.
+    </p>
 
 </div>
 
 <div class="predictor-card">
 
-```
-<form action="/predict-result" method="POST">
+    <form action="/predict-result" method="POST">
 
-    <div class="form-group">
+        <div class="form-group">
 
-        <label>JEE Rank</label>
+            <label>JEE Rank</label>
 
-        <input
-            type="number"
-            name="rank"
-            placeholder="Enter your JEE Rank"
-            required
-        >
+            <input
+                type="number"
+                name="rank"
+                placeholder="Enter your JEE Rank"
+                required
+            >
 
-    </div>
+        </div>
 
-    <div class="form-group">
+        <div class="form-group">
 
-        <label>Branch</label>
+            <label>Branch</label>
 
-        <select name="branch">
+            <select name="branch">
 
-            <option>CSE</option>
-            <option>IT</option>
-            <option>Mechanical</option>
+                <option>CSE</option>
+                <option>IT</option>
+                <option>Mechanical</option>
 
-        </select>
+            </select>
 
-    </div>
+        </div>
 
-    <button type="submit" class="predict-btn">
-        Predict Admission 🚀
-    </button>
+        <button type="submit" class="predict-btn">
+            Predict Admission 🚀
+        </button>
 
-</form>
-```
+    </form>
 
 </div>
 
-</body>
-
-</html>
+{% endblock %}

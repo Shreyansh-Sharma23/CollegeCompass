@@ -1,429 +1,157 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
 
-    <title>CollegeCompass</title>
+{% block content %}
 
-    <style>
+<!-- Hero Section -->
 
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Arial,sans-serif;
-            scroll-behavior:smooth;
-        }
+<div class="hero">
 
-        body{
-            background:#f4f7fc;
-        }
+    <h1>Find Your Perfect College</h1>
 
-        /* ---------- Navbar ---------- */
+    <p>
+        Discover colleges based on placements,
+        scholarships, ROI, internships and more.
+    </p>
 
-        nav{
-            background:#1e3a8a;
-            color:white;
-            padding:20px 50px;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-        }
+    <a href="/colleges" class="btn">
+        Find Colleges
+    </a>
 
-        nav h2{
-            font-size:30px;
-        }
+</div>
 
-        nav a{
-            color:white;
-            text-decoration:none;
-            margin-left:20px;
-            font-weight:bold;
-            transition:.3s;
-        }
+<!-- Platform Statistics -->
 
-        nav a:hover{
-            color:#bfdbfe;
-        }
+<h2 class="section-title">📊 Platform Statistics</h2>
 
-        /* ---------- Hero ---------- */
+<div class="stats">
 
-        .hero{
-            text-align:center;
-            padding:120px 20px;
-        }
+    <div class="stat-card">
+        <h2>{{ total_colleges }}+</h2>
+        <p>Colleges</p>
+    </div>
 
-        .hero h1{
-            font-size:55px;
-            color:#1e293b;
-            margin-bottom:20px;
-        }
+    <div class="stat-card">
+        <h2>{{ total_scholarships }}+</h2>
+        <p>Scholarships</p>
+    </div>
 
-        .hero p{
-            font-size:22px;
-            color:#64748b;
-            margin-bottom:40px;
-        }
+    <div class="stat-card">
+        <h2>{{ total_cities }}+</h2>
+        <p>Cities</p>
+    </div>
 
-        .btn{
-            display:inline-block;
-            background:#2563eb;
-            color:white;
-            text-decoration:none;
-            padding:15px 35px;
-            border-radius:10px;
-            font-size:18px;
-            transition:.3s;
-        }
+    <div class="stat-card">
+        <h2>10+</h2>
+        <p>Features</p>
+    </div>
 
-        .btn:hover{
-            background:#1d4ed8;
-        }
+</div>
 
-        /* ---------- Section Title ---------- */
+<!-- Top Colleges -->
 
-        .section-title{
-            text-align:center;
-            color:#1e3a8a;
-            font-size:38px;
-            margin-top:40px;
-        }
+<h2 class="section-title">⭐ Top Colleges</h2>
 
-        /* ---------- Statistics ---------- */
+<div class="top-colleges">
 
-        .stats{
-            width:90%;
-            margin:40px auto;
-            display:flex;
-            justify-content:center;
-            gap:25px;
-            flex-wrap:wrap;
-        }
+    {% for college in top_colleges %}
 
-        .stat-card{
-            width:220px;
-            background:white;
-            padding:30px;
-            text-align:center;
-            border-radius:15px;
-            box-shadow:0 4px 15px rgba(0,0,0,.1);
-            transition:.3s;
-        }
+    <div class="top-card">
 
-        .stat-card:hover{
-            transform:translateY(-8px);
-        }
+        <h3>{{ college[1] }}</h3>
 
-        .stat-card h2{
-            color:#2563eb;
-            font-size:40px;
-            margin-bottom:10px;
-        }
+        <p>⭐ ROI: {{ college[2] }}</p>
 
-        .stat-card p{
-            color:#555;
-            font-size:20px;
-        }
-
-        /* ---------- Top Colleges ---------- */
-
-        .top-colleges{
-            width:90%;
-            margin:40px auto;
-            display:flex;
-            justify-content:center;
-            gap:30px;
-            flex-wrap:wrap;
-        }
-
-        .top-card{
-            width:300px;
-            background:white;
-            padding:30px;
-            border-radius:15px;
-            text-align:center;
-            box-shadow:0 4px 15px rgba(0,0,0,.1);
-            transition:.3s;
-        }
-
-        .top-card:hover{
-            transform:translateY(-8px);
-        }
-
-        .top-card h3{
-            color:#1e3a8a;
-            margin-bottom:15px;
-            font-size:26px;
-        }
-
-        .top-card p{
-            font-size:20px;
-            margin-bottom:20px;
-        }
-
-        .top-card .btn{
-            margin-top:10px;
-        }
-
-        /* ---------- Features ---------- */
-
-        .features{
-            display:flex;
-            justify-content:center;
-            gap:30px;
-            padding:50px;
-            flex-wrap:wrap;
-        }
-
-        .feature-link{
-            text-decoration:none;
-            color:inherit;
-        }
-
-        .card{
-            width:280px;
-            background:white;
-            padding:25px;
-            border-radius:15px;
-            text-align:center;
-            box-shadow:0 4px 15px rgba(0,0,0,.1);
-            transition:.3s;
-        }
-
-        .card:hover{
-            transform:translateY(-8px);
-        }
-
-        .card h3{
-            color:#1e3a8a;
-            margin-bottom:10px;
-        }
-
-        .card p{
-            color:#555;
-        }
-
-        /* ---------- Footer ---------- */
-
-        footer{
-            margin-top:50px;
-            background:#1e3a8a;
-            color:white;
-            text-align:center;
-            padding:20px;
-        }
-        html{
-    scroll-behavior:smooth;
-}
-
-.card,
-.top-card,
-.stat-card{
-    transition:.35s;
-}
-
-.card:hover,
-.top-card:hover,
-.stat-card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
-}
-
-    </style>
-
-</head>
-
-<body>
-
-    <!-- Navbar -->
-
-    <nav>
-
-        <h2>🎓 CollegeCompass</h2>
-
-        <div>
-            <a href="/">Home</a>
-            <a href="/colleges">Find Colleges</a>
-            <a href="/compare">Compare Colleges</a>
-            <a href="/scholarships">Scholarships</a>
-            <a href="/predictor">Admission Predictor</a>
-            <a href="/fit-score">College Fit Score</a>
-            <a href="/placement">Placement Analytics</a>
-        </div>
-
-    </nav>
-
-    <!-- Hero Section -->
-
-    <div class="hero">
-
-        <h1>Find Your Perfect College</h1>
-
-        <p>
-            Discover colleges based on placements,
-            scholarships, ROI, internships and more.
-        </p>
-
-        <a href="/colleges" class="btn">
-            Find Colleges
+        <a href="/college/{{ college[0] }}" class="btn">
+            View Details
         </a>
 
     </div>
 
-    <!-- Statistics -->
+    {% endfor %}
 
-    <h2 class="section-title">📊 Platform Statistics</h2>
+</div>
 
-    <div class="stats">
+<!-- Features -->
 
-        <div class="stat-card">
-            <h2>{{ total_colleges }}+</h2>
-            <p>Colleges</p>
-        </div>
+<h2 class="section-title">🚀 Platform Features</h2>
 
-        <div class="stat-card">
-            <h2>{{ total_scholarships }}+</h2>
-            <p>Scholarships</p>
-        </div>
+<div class="features">
 
-        <div class="stat-card">
-            <h2>{{ total_cities }}+</h2>
-            <p>Cities</p>
-        </div>
+    <a href="/colleges" class="feature-link">
 
-        <div class="stat-card">
-            <h2>10+</h2>
-            <p>Features</p>
-        </div>
+        <div class="card">
 
-    </div>
+            <h3>🎓 College Finder</h3>
 
-    <!-- Top Colleges -->
-
-    <h2 class="section-title">⭐ Top Colleges</h2>
-
-    <div class="top-colleges">
-
-        {% for college in top_colleges %}
-
-        <div class="top-card">
-
-            <h3>{{ college[1] }}</h3>
-
-            <p>⭐ ROI : {{ college[2] }}</p>
-
-            <a href="/college/{{ college[0] }}" class="btn">
-                View Details
-            </a>
+            <p>
+                Search colleges based on budget,
+                branch and city.
+            </p>
 
         </div>
 
-        {% endfor %}
+    </a>
 
-    </div>
+    <a href="/compare" class="feature-link">
 
-    <!-- Features -->
+        <div class="card">
 
-    <h2 class="section-title">🚀 Platform Features</h2>
+            <h3>📊 College Comparison</h3>
 
-    <div class="features">
+            <p>
+                Compare colleges side by side
+                before making a decision.
+            </p>
 
-        <a href="/colleges" class="feature-link">
+        </div>
 
-            <div class="card">
+    </a>
 
-                <h3>🎓 College Finder</h3>
+    <a href="/scholarships" class="feature-link">
 
-                <p>
-                    Search colleges based on budget,
-                    branch and city.
-                </p>
+        <div class="card">
 
-            </div>
+            <h3>💰 Scholarship Finder</h3>
 
-        </a>
+            <p>
+                Find scholarships based on
+                Boards, JEE and CUET.
+            </p>
 
-        <a href="/compare" class="feature-link">
+        </div>
 
-            <div class="card">
+    </a>
 
-                <h3>📊 College Comparison</h3>
+    <a href="/predictor" class="feature-link">
 
-                <p>
-                    Compare colleges side by side
-                    before making a decision.
-                </p>
+        <div class="card">
 
-            </div>
+            <h3>🎯 Admission Predictor</h3>
 
-        </a>
+            <p>
+                Predict your admission chances
+                using previous cutoffs.
+            </p>
 
-        <a href="/scholarships" class="feature-link">
+        </div>
 
-            <div class="card">
+    </a>
 
-                <h3>💰 Scholarship Finder</h3>
+    <a href="/fit-score" class="feature-link">
 
-                <p>
-                    Find scholarships based on
-                    Boards, JEE and CUET.
-                </p>
+        <div class="card">
 
-            </div>
+            <h3>⭐ College Fit Score</h3>
 
-        </a>
+            <p>
+                Get personalized college
+                recommendations.
+            </p>
 
-        <a href="/predictor" class="feature-link">
+        </div>
 
-            <div class="card">
+    </a>
 
-                <h3>🎯 Admission Predictor</h3>
+</div>
 
-                <p>
-                    Predict your admission chances
-                    using previous cutoffs.
-                </p>
-
-            </div>
-
-        </a>
-
-        <a href="/fit-score" class="feature-link">
-
-            <div class="card">
-
-                <h3>⭐ College Fit Score</h3>
-
-                <p>
-                    Get personalized college
-                    recommendations.
-                </p>
-
-            </div>
-
-        </a>
-
-    </div>
-
-    <!-- Footer -->
-
-    <footer>
-
-        <h3>CollegeCompass</h3>
-
-        <br>
-
-        <p>
-            Smart College Selection Platform
-        </p>
-
-        <br>
-
-        <p>
-            © 2026 CollegeCompass
-        </p>
-
-    </footer>
-
-</body>
+{% endblock %}

@@ -1,189 +1,64 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-    <title>Find Colleges - CollegeCompass</title>
+{% block content %}
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+<div class="container">
 
-        body {
-            background: #f4f7fc;
-        }
+    <h1>Find Colleges</h1>
 
-        nav {
-            background: #1e3a8a;
-            color: white;
-            padding: 20px 50px;
-        }
+    <form method="POST" action="/search">
 
-        nav h2 {
-            font-size: 30px;
-        }
+        <label>Course</label>
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        <select name="course">
+            <option>BTech</option>
+            <option>BCA</option>
+            <option>BBA</option>
+        </select>
 
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 18px;
-            transition: 0.3s;
-        }
+        <label>Branch</label>
 
-        .nav-links a:hover {
-            color: #bfdbfe;
-        }
+        <select name="branch">
+            <option>CSE</option>
+            <option>IT</option>
+            <option>Mechanical</option>
+        </select>
 
-        .container {
-            width: 500px;
-            margin: 60px auto;
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        <label>City</label>
 
-            transition: 0.3s;
-        }
+        <select name="city">
+            <option value="">All Cities</option>
+            <option>Jaipur</option>
+            <option>Dehradun</option>
+            <option>Noida</option>
+            <option>Patiala</option>
+            <option>Chennai</option>
+            <option>Vellore</option>
+            <option>Mohali</option>
+            <option>Jalandhar</option>
+        </select>
 
-        .container:hover {
-            transform: translateY(-3px);
-        }
+        <label>Budget (Per Year)</label>
 
-        h1 {
-            text-align: center;
-            color: #1e3a8a;
-            margin-bottom: 30px;
-        }
+        <input type="number" name="budget" required>
 
-        label {
-            font-weight: bold;
-        }
+        <label>Sort By</label>
 
-        select,
-        input {
-            width: 100%;
-            padding: 12px;
-            margin-top: 8px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
+        <select name="sort">
 
-        button {
-            width: 100%;
-            background: #2563eb;
-            color: white;
-            padding: 15px;
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            cursor: pointer;
-        }
+            <option value="roi">Highest ROI</option>
+            <option value="placement">Highest Placement</option>
+            <option value="fees">Lowest Fees</option>
+            <option value="package">Highest Average Package</option>
 
-        button:hover {
-            background: #1d4ed8;
-        }
-    </style>
-</head>
+        </select>
 
-<body>
+        <button type="submit">
+            Search Colleges
+        </button>
 
-    <nav>
-        <div class="nav-container">
+    </form>
 
-            <h2>🎓 CollegeCompass</h2>
+</div>
 
-            <div class="nav-links">
-                <a href="/">Home</a>
-                <a href="/colleges">Find Colleges</a>
-                <a href="/compare">Compare Colleges</a>
-                <a href="/scholarships">Scholarships</a>
-                <a href="/predictor">Admission Predictor</a>
-                <a href="/fit-score">College Fit Score</a>
-                <a href="/placement">Placement Analytics</a>
-            </div>
-
-        </div>
-    </nav>
-
-    <div class="container">
-
-        <h1>Find Colleges</h1>
-
-        <form method="POST" action="/search">
-
-            <label>Course</label>
-
-            <select name="course">
-                <option>BTech</option>
-                <option>BCA</option>
-                <option>BBA</option>
-            </select>
-
-            <label>Branch</label>
-
-            <select name="branch">
-                <option>CSE</option>
-                <option>IT</option>
-                <option>Mechanical</option>
-            </select>
-            <label>City</label>
-
-            <select name="city">
-                <option value="">All Cities</option>
-                <option>Jaipur</option>
-                <option>Dehradun</option>
-                <option>Noida</option>
-                <option>Patiala</option>
-                <option>Chennai</option>
-                <option>Vellore</option>
-                <option>Mohali</option>
-                <option>Jalandhar</option>
-            </select>
-
-            <label>Budget (Per Year)</label>
-
-            <input type="number" name="budget">
-            <label>Sort By</label>
-
-            <select name="sort">
-
-                <option value="roi">
-                    Highest ROI
-                </option>
-
-                <option value="placement">
-                    Highest Placement
-                </option>
-
-                <option value="fees">
-                    Lowest Fees
-                </option>
-
-                <option value="package">
-                    Highest Average Package
-                </option>
-
-            </select>
-
-            <button type="submit">
-                Search Colleges
-            </button>
-
-        </form>
-
-    </div>
-
-</body>
-
-</html>
+{% endblock %}
