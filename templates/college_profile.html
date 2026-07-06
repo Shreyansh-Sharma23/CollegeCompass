@@ -1,200 +1,118 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<html>
+{% block content %}
 
-<head>
-    <title>{{ college[1] }} - CollegeCompass</title>
+<div class="profile-hero">
 
-```
-<style>
-    *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
-        font-family:Arial,sans-serif;
-    }
+    <h1>🎓 {{ college[1] }}</h1>
 
-    body{
-        background:#f4f7fc;
-    }
-
-    nav{
-        background:#1e3a8a;
-        color:white;
-        padding:20px 50px;
-    }
-
-    .nav-container{
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-    }
-
-    .nav-links a{
-        color:white;
-        text-decoration:none;
-        margin-left:20px;
-        font-size:18px;
-    }
-
-    .nav-links a:hover{
-        color:#bfdbfe;
-    }
-
-    .hero{
-        background:linear-gradient(135deg,#2563eb,#1e3a8a);
-        color:white;
-        text-align:center;
-        padding:50px;
-    }
-
-    .hero h1{
-        font-size:45px;
-        margin-bottom:10px;
-    }
-
-    .container{
-        width:85%;
-        margin:40px auto;
-    }
-
-    .stats{
-        display:flex;
-        gap:20px;
-        flex-wrap:wrap;
-        margin-bottom:25px;
-    }
-
-    .stat-box{
-        flex:1;
-        min-width:220px;
-        background:white;
-        border-radius:15px;
-        padding:25px;
-        text-align:center;
-        box-shadow:0px 4px 15px rgba(0,0,0,0.1);
-    }
-
-    .stat-box h3{
-        color:#1e3a8a;
-        margin-bottom:10px;
-    }
-
-    .stat-box p{
-        font-size:22px;
-        font-weight:bold;
-    }
-
-    .card{
-        background:white;
-        border-radius:15px;
-        padding:30px;
-        box-shadow:0px 4px 15px rgba(0,0,0,0.1);
-    }
-
-    .info{
-        font-size:18px;
-        margin-bottom:12px;
-    }
-
-    .back-btn{
-        display:inline-block;
-        margin-top:20px;
-        background:#2563eb;
-        color:white;
-        text-decoration:none;
-        padding:12px 25px;
-        border-radius:8px;
-    }
-</style>
-```
-
-</head>
-
-<body>
-
-<nav>
-    <div class="nav-container">
-        <h2>🎓 CollegeCompass</h2>
-
-```
-    <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/colleges">Find Colleges</a>
-        <a href="/compare">Compare Colleges</a>
-        <a href="/fit-score">College Fit Score</a>
-        <a href="/placement">Placement Analytics</a>
-    </div>
-</div>
-```
-
-</nav>
-
-<div class="hero">
-    <h1>{{ college[1] }}</h1>
     <p>📍 {{ college[2] }}</p>
-</div>
-
-<div class="container">
-
-```
-<div class="stats">
-
-    <div class="stat-box">
-        <h3>💰 Fees</h3>
-        <p>₹{{ "{:,}".format(college[5]) }}</p>
-    </div>
-
-    <div class="stat-box">
-        <h3>📊 Avg Package</h3>
-        <p>{{ college[6] }} LPA</p>
-    </div>
-
-    <div class="stat-box">
-        <h3>🏆 Highest Package</h3>
-        <p>{{ college[7] }}</p>
-    </div>
-
-    <div class="stat-box">
-        <h3>📈 Placement</h3>
-        <p>{{ college[8] }}</p>
-    </div>
-
-    <div class="stat-box">
-        <h3>⭐ ROI</h3>
-        <p>{{ college[9] }}</p>
-    </div>
 
 </div>
 
-<div class="card">
+<div class="profile-container">
 
-    <h2>🏫 College Overview</h2>
+    <!-- Quick Stats -->
 
-    <p class="info">📍 City: {{ college[2] }}</p>
+    <div class="profile-stats">
 
-    <p class="info">🎓 Course: {{ college[3] }}</p>
+        <div class="profile-stat">
+            <h3>💰 Fees</h3>
+            <p>₹{{ "{:,}".format(college[5]) }}</p>
+        </div>
 
-    <p class="info">💻 Branch: {{ college[4] }}</p>
+        <div class="profile-stat">
+            <h3>📈 Avg Package</h3>
+            <p>{{ college[6] }} LPA</p>
+        </div>
 
-    <p class="info">💰 Fees: ₹{{ "{:,}".format(college[5]) }}</p>
+        <div class="profile-stat">
+            <h3>🏆 Highest</h3>
+            <p>{{ college[7] }}</p>
+        </div>
 
-    <p class="info">📊 Average Package: {{ college[6] }} LPA</p>
+        <div class="profile-stat">
+            <h3>✅ Placement</h3>
+            <p>{{ college[8] }}</p>
+        </div>
 
-    <p class="info">🏆 Highest Package: {{ college[7] }}</p>
+        <div class="profile-stat">
+            <h3>⭐ ROI</h3>
+            <p>{{ college[9] }}</p>
+        </div>
 
-    <p class="info">📈 Placement: {{ college[8] }}</p>
+    </div>
 
-    <p class="info">⭐ ROI Score: {{ college[9] }}</p>
+    <!-- College Information -->
 
-    <a href="/colleges" class="back-btn">
-        ← Back to Search
-    </a>
+    <div class="profile-card">
+
+        <h2>🏫 College Information</h2>
+
+        <div class="info-grid">
+
+            <div class="info-item">
+                <span>📍 City</span>
+                <strong>{{ college[2] }}</strong>
+            </div>
+
+            <div class="info-item">
+                <span>🎓 Course</span>
+                <strong>{{ college[3] }}</strong>
+            </div>
+
+            <div class="info-item">
+                <span>💻 Branch</span>
+                <strong>{{ college[4] }}</strong>
+            </div>
+
+            <div class="info-item">
+                <span>💰 Fees</span>
+                <strong>₹{{ "{:,}".format(college[5]) }}</strong>
+            </div>
+
+            <div class="info-item">
+                <span>📈 Avg Package</span>
+                <strong>{{ college[6] }} LPA</strong>
+            </div>
+
+            <div class="info-item">
+                <span>🏆 Highest Package</span>
+                <strong>{{ college[7] }}</strong>
+            </div>
+
+            <div class="info-item">
+                <span>📊 Placement</span>
+                <strong>{{ college[8] }}</strong>
+            </div>
+
+            <div class="info-item">
+                <span>⭐ ROI</span>
+                <strong>{{ college[9] }}</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Action Buttons -->
+
+    <div class="profile-actions">
+
+        <a href="/favorites/add/{{ college[0] }}" class="btn">
+            ❤️ Add to Favorites
+        </a>
+
+        <a href="/compare?id={{ college[0] }}" class="btn">
+            📊 Compare
+        </a>
+
+        <a href="/colleges" class="btn">
+            ← Back
+        </a>
+
+    </div>
 
 </div>
-```
 
-</div>
-
-</body>
-</html>
+{% endblock %}
