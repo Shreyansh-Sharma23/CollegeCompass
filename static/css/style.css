@@ -1,153 +1,260 @@
-/* =====================================================
-   COLLEGECOMPASS - MAIN STYLESHEET
-===================================================== */
+/* ================= HOME PAGE ================= */
 
+.hero{
 
-/* =====================================================
-   GLOBAL
-===================================================== */
+    width:90%;
+    max-width:1200px;
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
+    margin:50px auto;
 
-body{
-    background:#f4f7fc;
-    color:#1f2937;
-}
-
-a{
-    text-decoration:none;
-}
-
-
-/* =====================================================
-   NAVBAR
-===================================================== */
-
-nav{
-    background:#1e3a8a;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 40px;
-}
-
-nav h2{
-    color:white;
-    font-size:30px;
-}
-
-.nav-links{
-    display:flex;
-    align-items:center;
-    gap:20px;
-}
-
-.nav-links a{
-    color:white;
-    font-weight:bold;
-    transition:.3s;
-}
-
-.nav-links a:hover{
-    color:#bfdbfe;
-}
-
-
-/* =====================================================
-   DROPDOWN
-===================================================== */
-
-.dropdown{
-    position:relative;
-}
-
-.dropbtn{
-    background:none;
-    border:none;
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.dropdown-content{
-    display:none;
-    position:absolute;
-    top:35px;
-    right:0;
     background:white;
-    min-width:220px;
-    border-radius:12px;
-    overflow:hidden;
-    box-shadow:0 5px 15px rgba(0,0,0,.2);
-    z-index:1000;
+
+    border-radius:20px;
+
+    padding:70px;
+
+    text-align:center;
+
+    box-shadow:0 8px 24px rgba(0,0,0,.08);
+
 }
 
-.dropdown-content a{
-    display:block;
-    padding:14px;
+.hero h1{
+
     color:#1e3a8a;
-    font-weight:bold;
+
+    font-size:58px;
+
+    margin-bottom:20px;
+
 }
 
-.dropdown-content a:hover{
-    background:#f3f4f6;
+.hero p{
+
+    color:#64748b;
+
+    font-size:20px;
+
+    max-width:700px;
+
+    margin:auto;
+
+    line-height:1.8;
+
 }
 
-.dropdown:hover .dropdown-content{
-    display:block;
+.hero-buttons{
+
+    margin-top:40px;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
 }
 
+.secondary-btn{
 
-/* =====================================================
-   BUTTONS
-===================================================== */
+    background:#e0edff;
 
-.btn,
-button{
-    background:#2563eb;
-    color:white;
-    border:none;
-    padding:14px 30px;
-    border-radius:10px;
-    cursor:pointer;
-    transition:.3s;
-    font-size:16px;
+    color:#1e3a8a;
+
 }
 
-.btn:hover,
-button:hover{
-    background:#1d4ed8;
+.homepage-section{
+
+    width:90%;
+
+    max-width:1200px;
+
+    margin:70px auto;
+
 }
-
-
-/* =====================================================
-   SECTION TITLES
-===================================================== */
 
 .section-title{
+
     text-align:center;
-    font-size:38px;
+
     color:#1e3a8a;
-    margin:50px 0 30px;
+
+    font-size:38px;
+
+    margin-bottom:40px;
+
 }
 
+.stats{
 
-/* =====================================================
-   FOOTER
-===================================================== */
+    display:grid;
 
-footer{
-    background:#1e3a8a;
-    color:white;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+
+}
+
+.stat-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:35px;
+
     text-align:center;
-    padding:25px;
-    margin-top:60px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.stat-icon{
+
+    font-size:45px;
+
+    margin-bottom:15px;
+
+}
+
+.stat-card h2{
+
+    color:#2563eb;
+
+    margin-bottom:8px;
+
+}
+
+.stat-card p{
+
+    color:#64748b;
+
+}
+
+.top-colleges{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:25px;
+
+}
+
+.top-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.top-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.badge{
+
+    display:inline-block;
+
+    margin:20px 0;
+
+    background:#fff3cd;
+
+    color:#b7791f;
+
+    padding:8px 18px;
+
+    border-radius:25px;
+
+    font-weight:bold;
+
+}
+
+.features{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:25px;
+
+}
+
+.feature-link{
+
+    color:inherit;
+
+    text-decoration:none;
+
+}
+
+.card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:35px;
+
+    text-align:center;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+    height:100%;
+
+}
+
+.card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.icon{
+
+    font-size:48px;
+
+    margin-bottom:20px;
+
+}
+
+.card h3{
+
+    color:#1e3a8a;
+
+    margin-bottom:15px;
+
+}
+
+.card p{
+
+    color:#64748b;
+
+    line-height:1.6;
+
 }
 /* =====================================================
    COLLEGE FINDER PAGE
@@ -502,5 +609,176 @@ form button{
         grid-template-columns:1fr;
 
     }
+
+}
+/* =====================================================
+   COMPARE PAGE
+===================================================== */
+
+.compare-container{
+
+    width:90%;
+    max-width:900px;
+    margin:60px auto;
+
+}
+
+.compare-subtitle{
+
+    text-align:center;
+    color:#666;
+    margin-top:-15px;
+    margin-bottom:40px;
+    font-size:18px;
+
+}
+
+.compare-card{
+
+    background:white;
+    padding:40px;
+    border-radius:18px;
+    box-shadow:0 5px 18px rgba(0,0,0,.1);
+
+}
+
+.compare-select{
+
+    margin-bottom:30px;
+
+}
+
+.compare-select label{
+
+    display:block;
+    margin-bottom:10px;
+    font-weight:bold;
+    color:#1e3a8a;
+
+}
+
+.compare-select select{
+
+    width:100%;
+    padding:15px;
+    border-radius:10px;
+    border:1px solid #ddd;
+
+}
+
+.vs-circle{
+
+    width:70px;
+    height:70px;
+
+    margin:20px auto;
+
+    border-radius:50%;
+
+    background:#2563eb;
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+}
+
+.compare-btn{
+
+    width:100%;
+    margin-top:20px;
+
+}
+
+/* =====================================================
+   COMPARE RESULT
+===================================================== */
+
+.compare-result-container{
+
+    width:90%;
+    max-width:1200px;
+    margin:50px auto;
+
+}
+
+.winner-banner{
+
+    background:#dcfce7;
+    color:#166534;
+
+    padding:20px;
+
+    text-align:center;
+
+    border-radius:15px;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    margin-bottom:30px;
+
+}
+
+.comparison-table{
+
+    background:white;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 5px 18px rgba(0,0,0,.1);
+
+}
+
+.comparison-table table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.comparison-table th{
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:18px;
+
+}
+
+.comparison-table td{
+
+    padding:18px;
+
+    text-align:center;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.comparison-table tr:hover{
+
+    background:#f8fafc;
+
+}
+
+.compare-actions{
+
+    text-align:center;
+
+    margin-top:30px;
 
 }

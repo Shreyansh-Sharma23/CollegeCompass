@@ -2,156 +2,227 @@
 
 {% block content %}
 
-<!-- Hero Section -->
+<!-- Hero -->
 
-<div class="hero">
+<section class="hero">
 
-    <h1>Find Your Perfect College</h1>
+    <div class="hero-content">
 
-    <p>
-        Discover colleges based on placements,
-        scholarships, ROI, internships and more.
-    </p>
+        <h1>Find Your Perfect College</h1>
 
-    <a href="/colleges" class="btn">
-        Find Colleges
-    </a>
+        <p>
 
-</div>
+            Compare colleges, scholarships, placements,
+            ROI and admission chances—all in one place.
 
-<!-- Platform Statistics -->
+        </p>
 
-<h2 class="section-title">📊 Platform Statistics</h2>
+        <div class="hero-buttons">
 
-<div class="stats">
+            <a href="/colleges" class="btn">
+                🔍 Find Colleges
+            </a>
 
-    <div class="stat-card">
-        <h2>{{ total_colleges }}+</h2>
-        <p>Colleges</p>
+            <a href="/compare" class="btn secondary-btn">
+                📊 Compare Colleges
+            </a>
+
+        </div>
+
     </div>
 
-    <div class="stat-card">
-        <h2>{{ total_scholarships }}+</h2>
-        <p>Scholarships</p>
+</section>
+
+<!-- Statistics -->
+
+<section class="homepage-section">
+
+    <h2 class="section-title">
+        Platform Statistics
+    </h2>
+
+    <div class="stats">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">🎓</div>
+
+            <h2>{{ total_colleges }}+</h2>
+
+            <p>Colleges</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <div class="stat-icon">💰</div>
+
+            <h2>{{ total_scholarships }}+</h2>
+
+            <p>Scholarships</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <div class="stat-icon">📍</div>
+
+            <h2>{{ total_cities }}+</h2>
+
+            <p>Cities</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <div class="stat-icon">⭐</div>
+
+            <h2>10+</h2>
+
+            <p>Features</p>
+
+        </div>
+
     </div>
 
-    <div class="stat-card">
-        <h2>{{ total_cities }}+</h2>
-        <p>Cities</p>
-    </div>
-
-    <div class="stat-card">
-        <h2>10+</h2>
-        <p>Features</p>
-    </div>
-
-</div>
+</section>
 
 <!-- Top Colleges -->
 
-<h2 class="section-title">⭐ Top Colleges</h2>
+<section class="homepage-section">
 
-<div class="top-colleges">
+    <h2 class="section-title">
 
-    {% for college in top_colleges %}
+        Featured Colleges
 
-    <div class="top-card">
+    </h2>
 
-        <h3>{{ college[1] }}</h3>
+    <div class="top-colleges">
 
-        <p>⭐ ROI: {{ college[2] }}</p>
+        {% for college in top_colleges %}
 
-        <a href="/college/{{ college[0] }}" class="btn">
-            View Details
+        <div class="top-card">
+
+            <h3>{{ college[1] }}</h3>
+
+            <div class="badge">
+
+                ⭐ ROI {{ college[2] }}
+
+            </div>
+
+            <a href="/college/{{ college[0] }}" class="btn">
+
+                View Details →
+
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+<!-- Features -->
+
+<section class="homepage-section">
+
+    <h2 class="section-title">
+
+        Explore CollegeCompass
+
+    </h2>
+
+    <div class="features">
+
+        <a href="/colleges" class="feature-link">
+
+            <div class="card">
+
+                <div class="icon">🎓</div>
+
+                <h3>College Finder</h3>
+
+                <p>Search colleges using budget, city and branch.</p>
+
+            </div>
+
+        </a>
+
+        <a href="/compare" class="feature-link">
+
+            <div class="card">
+
+                <div class="icon">📊</div>
+
+                <h3>Compare Colleges</h3>
+
+                <p>Compare fees, ROI and placements.</p>
+
+            </div>
+
+        </a>
+
+        <a href="/scholarships" class="feature-link">
+
+            <div class="card">
+
+                <div class="icon">💰</div>
+
+                <h3>Scholarships</h3>
+
+                <p>Find scholarships for your profile.</p>
+
+            </div>
+
+        </a>
+
+        <a href="/predictor" class="feature-link">
+
+            <div class="card">
+
+                <div class="icon">🎯</div>
+
+                <h3>Admission Predictor</h3>
+
+                <p>Predict your admission chances.</p>
+
+            </div>
+
+        </a>
+
+        <a href="/fit-score" class="feature-link">
+
+            <div class="card">
+
+                <div class="icon">⭐</div>
+
+                <h3>Fit Score</h3>
+
+                <p>Get personalized recommendations.</p>
+
+            </div>
+
+        </a>
+
+        <a href="/placement" class="feature-link">
+
+            <div class="card">
+
+                <div class="icon">📈</div>
+
+                <h3>Placement Analytics</h3>
+
+                <p>Explore packages and placements.</p>
+
+            </div>
+
         </a>
 
     </div>
 
-    {% endfor %}
-
-</div>
-
-<!-- Features -->
-
-<h2 class="section-title">🚀 Platform Features</h2>
-
-<div class="features">
-
-    <a href="/colleges" class="feature-link">
-
-        <div class="card">
-
-            <h3>🎓 College Finder</h3>
-
-            <p>
-                Search colleges based on budget,
-                branch and city.
-            </p>
-
-        </div>
-
-    </a>
-
-    <a href="/compare" class="feature-link">
-
-        <div class="card">
-
-            <h3>📊 College Comparison</h3>
-
-            <p>
-                Compare colleges side by side
-                before making a decision.
-            </p>
-
-        </div>
-
-    </a>
-
-    <a href="/scholarships" class="feature-link">
-
-        <div class="card">
-
-            <h3>💰 Scholarship Finder</h3>
-
-            <p>
-                Find scholarships based on
-                Boards, JEE and CUET.
-            </p>
-
-        </div>
-
-    </a>
-
-    <a href="/predictor" class="feature-link">
-
-        <div class="card">
-
-            <h3>🎯 Admission Predictor</h3>
-
-            <p>
-                Predict your admission chances
-                using previous cutoffs.
-            </p>
-
-        </div>
-
-    </a>
-
-    <a href="/fit-score" class="feature-link">
-
-        <div class="card">
-
-            <h3>⭐ College Fit Score</h3>
-
-            <p>
-                Get personalized college
-                recommendations.
-            </p>
-
-        </div>
-
-    </a>
-
-</div>
+</section>
 
 {% endblock %}
