@@ -1,94 +1,187 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
+{% block content %}
 
-    <title>Login</title>
+<div class="auth-container">
 
-    <style>
+    <div class="auth-card">
 
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Arial,sans-serif;
-        }
+        <h1>👋 Welcome Back</h1>
 
-        body{
-            background:#f4f7fc;
-        }
+        <p>
+            Login to continue using CollegeCompass.
+        </p>
 
-        .container{
-            width:420px;
-            margin:80px auto;
-            background:white;
-            padding:35px;
-            border-radius:15px;
-            box-shadow:0 5px 15px rgba(0,0,0,.1);
-        }
+        <form action="/login" method="POST">
 
-        h1{
-            text-align:center;
-            color:#1e3a8a;
-            margin-bottom:30px;
-        }
+            <label>Email Address</label>
 
-        label{
-            display:block;
-            margin-top:15px;
-            font-weight:bold;
-        }
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+            >
 
-        input{
-            width:100%;
-            padding:12px;
-            margin-top:6px;
-            border:1px solid #ccc;
-            border-radius:8px;
-        }
+            <label>Password</label>
 
-        button{
-            width:100%;
-            margin-top:25px;
-            padding:14px;
-            background:#2563eb;
-            color:white;
-            border:none;
-            border-radius:8px;
-            font-size:17px;
-            cursor:pointer;
-        }
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+            >
 
-        button:hover{
-            background:#1d4ed8;
-        }
+            <button type="submit" class="btn auth-btn">
 
-    </style>
+                Login
 
-</head>
+            </button>
 
-<body>
+        </form>
 
-<div class="container">
+        <div class="auth-footer">
 
-<h1>Login</h1>
+            Don't have an account?
 
-<form action="/login-user" method="POST">
+            <a href="/register">
 
-<label>Email</label>
-<input type="email" name="email" required>
+                Register
 
-<label>Password</label>
-<input type="password" name="password" required>
+            </a>
 
-<button type="submit">
-Login
-</button>
+        </div>
 
-</form>
+    </div>
 
 </div>
 
-</body>
+{% endblock %}
+/* =====================================================
+   LOGIN & REGISTER
+===================================================== */
 
-</html>
+.auth-container{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:70px 20px;
+
+}
+
+.auth-card{
+
+    width:100%;
+    max-width:500px;
+
+    background:white;
+
+    padding:45px;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 24px rgba(0,0,0,.08);
+
+}
+
+.auth-card h1{
+
+    text-align:center;
+
+    color:#1e3a8a;
+
+    margin-bottom:10px;
+
+}
+
+.auth-card p{
+
+    text-align:center;
+
+    color:#64748b;
+
+    margin-bottom:35px;
+
+}
+
+.auth-card form{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.auth-card label{
+
+    margin-bottom:8px;
+
+    margin-top:18px;
+
+    font-weight:bold;
+
+    color:#1e3a8a;
+
+}
+
+.auth-card input{
+
+    padding:14px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+}
+
+.auth-card input:focus{
+
+    outline:none;
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 8px rgba(37,99,235,.2);
+
+}
+
+.auth-btn{
+
+    margin-top:30px;
+
+    width:100%;
+
+}
+
+.auth-footer{
+
+    margin-top:25px;
+
+    text-align:center;
+
+    color:#64748b;
+
+}
+
+.auth-footer a{
+
+    color:#2563eb;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+}
+
+.auth-footer a:hover{
+
+    text-decoration:underline;
+
+}
