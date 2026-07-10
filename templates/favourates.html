@@ -1,21 +1,74 @@
-@app.route("/favorites")
-def favorites():
+{% extends "base.html" %}
 
-    conn = sqlite3.connect("college.db")
-    cursor = conn.cursor()
+{% block content %}
 
-    cursor.execute("""
-    SELECT colleges.*
-    FROM favorites
-    JOIN colleges
-    ON favorites.college_id = colleges.id
-    """)
+<div class="favorites-container">
 
-    colleges = cursor.fetchall()
+    <h1 class="page-title">
+        ❤️ My Favorite Colleges
+    </h1>
 
-    conn.close()
+    {% if colleges %}
 
-    return render_template(
-        "favorites.html",
-        colleges=colleges
-    )
+    <div class="favorites-grid">
+
+        {% for college in colleges %}
+
+        <div class="favorite-card">
+
+            <h2>{{ college[1] }}</h2>
+
+            <p>📍 {{ college[2] }}</p>
+
+            <p>🎓 {{ college[3] }} - {{ college[4] }}</p>
+
+            <p>💰 ₹{{ "{:,}".format(college[5]) }}</p>
+
+            <p>📈 Avg Package: {{ college[6] }} LPA</p>
+
+            <p>⭐ ROI: {{ college[9] }}</p>
+
+            <div class="favorite-buttons">
+
+                <a href="/college/{{ college[0] }}" class="btn">
+                    View Details
+                </a>
+
+                <a href="/remove-favorite/{{ college[0] }}" class="btn remove-btn">
+                    Remove
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="empty-state">
+
+        <h2>❤️ No Favorite Colleges Yet</h2>
+
+        <p>
+
+            Save colleges while exploring them and they'll
+            appear here.
+
+        </p>
+
+        <a href="/colleges" class="btn">
+
+            Find Colleges
+
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

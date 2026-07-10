@@ -1,197 +1,79 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
+{% block content %}
 
-    <title>My Profile - CollegeCompass</title>
+<div class="profile-container">
 
-    <style>
+    <div class="user-profile-card">
 
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Arial,sans-serif;
-        }
+        <div class="profile-avatar">
 
-        body{
-            background:#f4f7fc;
-        }
-
-        nav{
-            background:#1e3a8a;
-            color:white;
-            padding:20px 40px;
-        }
-
-        nav h2{
-            font-size:30px;
-        }
-
-        .container{
-            width:90%;
-            max-width:900px;
-            margin:40px auto;
-        }
-
-        h1{
-            color:#1e3a8a;
-            margin-bottom:30px;
-            text-align:center;
-        }
-
-        .profile-card{
-            background:white;
-            padding:35px;
-            border-radius:15px;
-            box-shadow:0 5px 15px rgba(0,0,0,.1);
-        }
-
-        .profile-info{
-            margin-bottom:30px;
-        }
-
-        .profile-info p{
-            font-size:20px;
-            margin:15px 0;
-        }
-
-        .stats{
-            display:flex;
-            justify-content:center;
-            gap:25px;
-            flex-wrap:wrap;
-            margin:35px 0;
-        }
-
-        .stat-card{
-            background:white;
-            width:220px;
-            padding:25px;
-            border-radius:15px;
-            text-align:center;
-            box-shadow:0 5px 15px rgba(0,0,0,.1);
-        }
-
-        .stat-card h2{
-            color:#2563eb;
-            font-size:40px;
-            margin-bottom:10px;
-        }
-
-        .stat-card p{
-            font-size:18px;
-            color:#555;
-        }
-
-        .buttons{
-            display:flex;
-            justify-content:center;
-            gap:20px;
-            flex-wrap:wrap;
-            margin-top:35px;
-        }
-
-        .btn{
-            text-decoration:none;
-            background:#2563eb;
-            color:white;
-            padding:14px 28px;
-            border-radius:8px;
-            font-size:17px;
-            transition:.3s;
-        }
-
-        .btn:hover{
-            background:#1d4ed8;
-        }
-
-        .logout{
-            background:#dc2626;
-        }
-
-        .logout:hover{
-            background:#b91c1c;
-        }
-
-    </style>
-
-</head>
-
-<body>
-
-<nav>
-
-    <h2>🎓 CollegeCompass</h2>
-
-</nav>
-
-<div class="container">
-
-    <h1>👤 My Profile</h1>
-
-    <div class="profile-card">
-
-        <div class="profile-info">
-
-            <p><strong>Name:</strong> {{ name }}</p>
-
-            <p><strong>Email:</strong> {{ email }}</p>
+            👤
 
         </div>
 
-    </div>
+        <h1>{{ name }}</h1>
 
-    <div class="stats">
+        <p class="profile-email">
 
-        <div class="stat-card">
+            {{ email }}
 
-            <h2>{{ favorite_count }}</h2>
+        </p>
 
-            <p>❤️ Saved Colleges</p>
+        <div class="profile-divider"></div>
+
+        <div class="profile-stats">
+
+            <div class="profile-stat">
+
+                <h2>{{ favorite_count }}</h2>
+
+                <span>❤️ Saved Colleges</span>
+
+            </div>
+
+            <div class="profile-stat">
+
+                <h2>Student</h2>
+
+                <span>Account Type</span>
+
+            </div>
+
+            <div class="profile-stat">
+
+                <h2>2026</h2>
+
+                <span>Member Since</span>
+
+            </div>
 
         </div>
 
-        <div class="stat-card">
+        <div class="profile-buttons">
 
-            <h2>Student</h2>
+            <a href="/favorites" class="btn">
 
-            <p>Account Type</p>
+                ❤️ Favorites
+
+            </a>
+
+            <a href="/colleges" class="btn">
+
+                🎓 Find Colleges
+
+            </a>
+
+            <a href="/logout" class="btn logout-btn">
+
+                🚪 Logout
+
+            </a>
 
         </div>
-
-        <div class="stat-card">
-
-            <h2>2026</h2>
-
-            <p>Member Since</p>
-
-        </div>
-
-    </div>
-
-    <div class="buttons">
-
-        <a href="/" class="btn">
-            🏠 Home
-        </a>
-
-        <a href="/favorites" class="btn">
-            ❤️ Favorites
-        </a>
-
-        <a href="/colleges" class="btn">
-            🎓 Find Colleges
-        </a>
-
-        <a href="/logout" class="btn logout">
-            🚪 Logout
-        </a>
 
     </div>
 
 </div>
 
-</body>
-
-</html>
+{% endblock %}
