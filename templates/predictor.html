@@ -2,52 +2,109 @@
 
 {% block content %}
 
-<div class="hero">
+<div class="page-header">
 
     <h1>🎯 Admission Predictor</h1>
 
     <p>
-        Predict your admission chances using previous year cutoff trends.
+        Predict your admission chances based on your academic profile.
     </p>
 
 </div>
 
-<div class="predictor-card">
+<div class="predictor-container">
 
-    <form action="/predict-result" method="POST">
+    <div class="predictor-card">
 
-        <div class="form-group">
+        <form action="/predict-result" method="POST">
 
-            <label>JEE Rank</label>
+            <div class="form-group">
 
-            <input
-                type="number"
-                name="rank"
-                placeholder="Enter your JEE Rank"
-                required
-            >
+                <label>JEE Rank</label>
 
-        </div>
+                <input
+                    type="number"
+                    name="rank"
+                    placeholder="Enter your JEE Rank"
+                    required
+                >
 
-        <div class="form-group">
+            </div>
 
-            <label>Branch</label>
+            <div class="form-group">
 
-            <select name="branch">
+                <label>Preferred Branch</label>
 
-                <option>CSE</option>
-                <option>IT</option>
-                <option>Mechanical</option>
+                <select name="branch" required>
 
-            </select>
+                    <option value="">Select Branch</option>
+                    <option>CSE</option>
+                    <option>IT</option>
+                    <option>Mechanical</option>
+                    <option>ECE</option>
+                    <option>Civil</option>
 
-        </div>
+                </select>
 
-        <button type="submit" class="predict-btn">
-            Predict Admission 🚀
-        </button>
+            </div>
 
-    </form>
+            <div class="form-group">
+
+                <label>Category</label>
+
+                <select name="category" required>
+
+                    <option value="">Select Category</option>
+                    <option>General</option>
+                    <option>OBC</option>
+                    <option>EWS</option>
+                    <option>SC</option>
+                    <option>ST</option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Preferred State</label>
+
+                <select name="state">
+
+                    <option>Rajasthan</option>
+                    <option>Uttarakhand</option>
+                    <option>Uttar Pradesh</option>
+                    <option>Delhi</option>
+                    <option>Punjab</option>
+                    <option>Haryana</option>
+                    <option>Madhya Pradesh</option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Maximum Annual Budget (₹)</label>
+
+                <input
+                    type="number"
+                    name="budget"
+                    placeholder="e.g. 300000"
+                    required
+                >
+
+            </div>
+
+            <button class="btn predictor-btn">
+
+                🚀 Predict Admission
+
+            </button>
+
+        </form>
+
+    </div>
 
 </div>
 

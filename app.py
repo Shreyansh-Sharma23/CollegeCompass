@@ -245,42 +245,58 @@ def predict_result():
 
     rank = int(request.form["rank"])
     branch = request.form["branch"]
+    category = request.form["category"]
+    state = request.form["state"]
+    budget = int(request.form["budget"])
 
     conn = sqlite3.connect("college.db")
     cursor = conn.cursor()
 
-    cursor.execute(
-        "SELECT * FROM cutoffs WHERE branch=?",
-        (branch,)
-    )
+    cursor.execute("""
+
+        SELECT *
+
+        FROM colleges
+
+        WHERE branch=?
+        AND fees<=?
+
+    """,(branch,budget))
 
     colleges = cursor.fetchall()
 
     conn.close()
 
-    results = []
+    predictions=[]
 
     for college in colleges:
 
-        if rank <= college[5]:
-            status = "🔴 Ambitious"
+        if rank <= 20000:
 
-        elif rank <= college[4]:
-            status = "🟡 Moderate"
+            chance="🟢 Safe"
 
-        elif rank <= college[3]:
-            status = "🟢 Safe"
+        elif rank <= 50000:
+
+            chance="🟡 Moderate"
 
         else:
-            status = "❌ Low Chance"
 
-        results.append(
-            (college[1], status)
-        )
+            chance="🔴 Ambitious"
+
+        predictions.append((college,chance))
 
     return render_template(
+
         "predict_result.html",
-        results=results
+
+        predictions=predictions,
+
+        rank=rank,
+
+        category=category,
+
+        state=state
+
     )
 @app.route("/fit-score")
 def fit_score():
