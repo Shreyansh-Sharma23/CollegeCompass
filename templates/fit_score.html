@@ -1,206 +1,71 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<html>
+{% block content %}
 
-<head>
-    <title>College Fit Score - CollegeCompass</title>
+<div class="page-header">
 
-```
-<style>
+    <h1>⭐ College Fit Score</h1>
 
-    *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
-        font-family:Arial,sans-serif;
-    }
+    <p>
+        Get personalized college recommendations based on your academic profile.
+    </p>
 
-    body{
-        background:#f4f7fc;
-    }
+</div>
 
-    nav{
-        background:#1e3a8a;
-        color:white;
-        padding:20px 50px;
-    }
+<div class="fit-container">
 
-    .nav-container{
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-    }
+    <div class="fit-card">
 
-    nav h2{
-        font-size:30px;
-    }
+        <form action="/fit-score-result" method="POST">
 
-    .nav-links a{
-        color:white;
-        text-decoration:none;
-        margin-left:20px;
-        font-size:18px;
-        font-weight:bold;
-    }
+            <div class="form-group">
 
-    .nav-links a:hover{
-        color:#bfdbfe;
-    }
+                <label>JEE Rank</label>
 
-    .hero{
-        text-align:center;
-        padding:60px 20px;
-    }
+                <input
+                    type="number"
+                    name="rank"
+                    placeholder="Enter your JEE Rank"
+                    required>
 
-    .hero h1{
-        color:#1e3a8a;
-        font-size:48px;
-        margin-bottom:10px;
-    }
+            </div>
 
-    .hero p{
-        color:#555;
-        font-size:20px;
-    }
+            <div class="form-group">
 
-    .fit-card{
-        width:600px;
-        max-width:90%;
-        margin:auto;
-        background:white;
-        padding:40px;
-        border-radius:20px;
-        box-shadow:0px 4px 15px rgba(0,0,0,0.1);
-    }
+                <label>Budget (Per Year)</label>
 
-    .form-group{
-        margin-bottom:25px;
-    }
+                <input
+                    type="number"
+                    name="budget"
+                    placeholder="Enter your Annual Budget"
+                    required>
 
-    label{
-        display:block;
-        margin-bottom:10px;
-        font-weight:bold;
-        color:#1e3a8a;
-        font-size:18px;
-    }
+            </div>
 
-    input,select{
-        width:100%;
-        padding:15px;
-        border:1px solid #ddd;
-        border-radius:10px;
-        font-size:16px;
-    }
+            <div class="form-group">
 
-    .fit-btn{
-        width:100%;
-        padding:15px;
-        background:#2563eb;
-        color:white;
-        border:none;
-        border-radius:10px;
-        font-size:18px;
-        cursor:pointer;
-    }
+                <label>Preferred Branch</label>
 
-    .fit-btn:hover{
-        background:#1d4ed8;
-    }
+                <select name="branch">
 
-</style>
-```
+                    <option>CSE</option>
+                    <option>IT</option>
+                    <option>Mechanical</option>
 
-</head>
+                </select>
 
-<body>
+            </div>
 
-<nav>
+            <button type="submit" class="btn fit-btn">
 
-```
-<div class="nav-container">
+                ⭐ Calculate Fit Score
 
-    <h2>🎓 CollegeCompass</h2>
+            </button>
 
-    <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/colleges">Find Colleges</a>
-        <a href="/compare">Compare Colleges</a>
-        <a href="/scholarships">Scholarships</a>
-        <a href="/predictor">Admission Predictor</a>
-        <a href="/fit-score">College Fit Score</a>
-        <a href="/placement">Placement Analytics</a>
+        </form>
+
     </div>
 
 </div>
-```
 
-</nav>
-
-<div class="hero">
-
-```
-<h1>⭐ College Fit Score</h1>
-
-<p>
-    Get personalized college recommendations based on your profile.
-</p>
-```
-
-</div>
-
-<div class="fit-card">
-
-<form action="/fit-score-result" method="POST">
-
-```
-<div class="form-group">
-
-    <label>JEE Rank</label>
-
-    <input
-        type="number"
-        name="rank"
-        placeholder="Enter your JEE Rank"
-        required>
-
-</div>
-
-<div class="form-group">
-
-    <label>Budget (Per Year)</label>
-
-    <input
-        type="number"
-        name="budget"
-        placeholder="Enter your Budget"
-        required>
-
-</div>
-
-<div class="form-group">
-
-    <label>Preferred Branch</label>
-
-    <select name="branch">
-
-        <option>CSE</option>
-        <option>IT</option>
-        <option>Mechanical</option>
-
-    </select>
-
-</div>
-
-<button type="submit" class="fit-btn">
-    Calculate Fit Score ⭐
-</button>
-```
-
-</form>
-
-</div>
-
-</body>
-
-</html>
+{% endblock %}

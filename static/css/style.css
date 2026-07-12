@@ -1378,3 +1378,103 @@ form button{
     color:#991b1b;
 
 }
+/* ================= FIT SCORE ================= */
+
+.fit-container{
+
+    width:90%;
+    max-width:700px;
+
+    margin:50px auto 70px;
+
+}
+
+.fit-card{
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    box-shadow:0 8px 24px rgba(0,0,0,.08);
+
+}
+
+.fit-btn{
+
+    width:100%;
+
+    margin-top:10px;
+
+}
+
+/* ================= FIT SCORE RESULT ================= */
+
+.fit-result-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:25px;
+
+}
+
+.fit-result-card{
+
+    position:relative;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 24px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.fit-result-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.fit-result-card h2{
+
+    color:#1e3a8a;
+
+    margin-bottom:18px;
+
+}
+
+.fit-result-card p{
+
+    margin:10px 0;
+
+    color:#555;
+
+}
+
+.fit-score{
+
+    position:absolute;
+
+    top:20px;
+
+    right:20px;
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    font-weight:bold;
+
+}

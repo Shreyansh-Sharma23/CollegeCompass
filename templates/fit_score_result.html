@@ -1,178 +1,67 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-    <title>College Fit Score - Results</title>
+{% block content %}
 
-    <style>
+<div class="page-header">
 
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Arial,sans-serif;
-        }
+    <h1>⭐ Your Best Fit Colleges</h1>
 
-        body{
-            background:#f4f7fc;
-        }
+    <p>
+        Colleges ranked according to your profile.
+    </p>
 
-        nav{
-            background:#1e3a8a;
-            color:white;
-            padding:20px 50px;
-        }
+</div>
 
-        .nav-container{
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-        }
+<div class="page-container">
 
-        nav h2{
-            font-size:30px;
-        }
+    <div class="fit-result-grid">
 
-        .nav-links a{
-            color:white;
-            text-decoration:none;
-            margin-left:20px;
-            font-size:18px;
-            font-weight:bold;
-        }
+        {% for college, score in scores %}
 
-        .nav-links a:hover{
-            color:#bfdbfe;
-        }
+        <div class="fit-result-card">
 
-        h1{
-            text-align:center;
-            color:#1e3a8a;
-            margin:40px 0;
-        }
+            <div class="fit-score">
 
-        .container{
-            width:85%;
-            margin:auto;
-        }
+                {{ score }}/100
 
-        .card{
-            background:white;
-            padding:25px;
-            border-radius:15px;
-            box-shadow:0px 4px 15px rgba(0,0,0,0.1);
-            margin-bottom:20px;
-            transition:.3s;
-        }
+            </div>
 
-        .card:hover{
-            transform:translateY(-5px);
-        }
+            <h2>{{ college[1] }}</h2>
 
-        .score{
-            float:right;
-            background:#2563eb;
-            color:white;
-            padding:8px 15px;
-            border-radius:20px;
-            font-weight:bold;
-        }
+            <p>📍 {{ college[2] }}</p>
 
-        .info{
-            margin-top:10px;
-            font-size:18px;
-        }
+            <p>💻 {{ college[4] }}</p>
 
-        .back-btn{
-            display:block;
-            width:250px;
-            margin:40px auto;
-            text-align:center;
-            background:#2563eb;
-            color:white;
-            text-decoration:none;
-            padding:15px;
-            border-radius:10px;
-            font-size:18px;
-        }
+            <p>💰 ₹{{ "{:,}".format(college[5]) }}</p>
 
-        .back-btn:hover{
-            background:#1d4ed8;
-        }
+            <p>📈 Avg Package: {{ college[6] }} LPA</p>
 
-    </style>
+            <p>⭐ ROI: {{ college[9] }}</p>
 
-</head>
+            <br>
 
-<body>
+            <a href="/college/{{ college[0] }}" class="btn">
 
-<nav>
+                View Details
 
-    <div class="nav-container">
+            </a>
 
-        <h2>🎓 CollegeCompass</h2>
-
-        <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/colleges">Find Colleges</a>
-            <a href="/compare">Compare Colleges</a>
-            <a href="/scholarships">Scholarships</a>
-            <a href="/predictor">Admission Predictor</a>
-            <a href="/fit-score">College Fit Score</a>
         </div>
+
+        {% endfor %}
 
     </div>
 
-</nav>
+    <div class="center-btn">
 
-<h1>⭐ Your Best Fit Colleges</h1>
+        <a href="/fit-score" class="btn">
 
-<div class="container">
+            ⭐ Calculate Again
 
-{% for college, score in scores %}
+        </a>
 
-<div class="card">
-
-    <span class="score">
-        {{ score }}/100
-    </span>
-
-    <h2>{{ college[1] }}</h2>
-
-    <p class="info">
-        📍 {{ college[2] }}
-    </p>
-
-    <p class="info">
-        💻 {{ college[4] }}
-    </p>
-
-    <p class="info">
-        💰 Fees: ₹{{ "{:,}".format(college[5]) }}
-    </p>
-
-    <p class="info">
-        📊 Avg Package: {{ college[6] }} LPA
-    </p>
-
-    <p class="info">
-        📈 Placement: {{ college[8] }}
-    </p>
-
-    <p class="info">
-        ⭐ ROI Score: {{ college[9] }}
-    </p>
+    </div>
 
 </div>
 
-{% endfor %}
-
-<a href="/fit-score" class="back-btn">
-    Calculate Again
-</a>
-
-</div>
-
-</body>
-
-</html>
+{% endblock %}
