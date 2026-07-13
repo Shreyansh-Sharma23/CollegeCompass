@@ -402,7 +402,7 @@ def favorites():
     colleges = cursor.fetchall()
 
     conn.close()
-
+ 
     return render_template(
         "favorites.html",
         colleges=colleges
@@ -414,9 +414,9 @@ def placement():
     cursor = conn.cursor()
 
     cursor.execute("""
-    SELECT name, city, avg_package, highest_package, placement
-    FROM colleges
-    ORDER BY avg_package DESC
+        SELECT *
+        FROM colleges
+        ORDER BY avg_package DESC
     """)
 
     colleges = cursor.fetchall()
@@ -427,6 +427,10 @@ def placement():
         "placement.html",
         colleges=colleges
     )
+@app.route("/placement")
+def placement():
+    ...
+    return render_template("placement.html", colleges=colleges)
 @app.route("/admin")
 def admin():
     return render_template("admin.html")

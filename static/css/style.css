@@ -1478,3 +1478,78 @@ form button{
     font-weight:bold;
 
 }
+/* ================= PLACEMENT ================= */
+
+.placement-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:25px;
+
+}
+
+.placement-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 8px 24px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+    text-align:center;
+
+}
+
+.placement-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.placement-card h2{
+
+    color:#1e3a8a;
+
+    margin-bottom:10px;
+
+}
+
+.placement-card p{
+
+    color:#555;
+
+    margin:10px 0;
+
+}
+
+.placement-card h3{
+
+    color:#2563eb;
+
+    margin-bottom:15px;
+
+}
+
+.placement-card hr{
+
+    margin:20px 0;
+
+    border:none;
+
+    border-top:1px solid #e5e7eb;
+
+}
+
+.placement-card .btn{
+
+    margin-top:15px;
+
+    display:inline-block;
+
+}

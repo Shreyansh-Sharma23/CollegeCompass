@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+
+    <h1>📈 Placement Analytics</h1>
+
+    <p>
+        Compare placement statistics, average packages and ROI across colleges.
+    </p>
+
+</div>
+
+<div class="page-container">
+
+    <div class="placement-grid">
+
+        {% for college in colleges %}
+
+        <div class="placement-card">
+
+            <h2>{{ college[1] }}</h2>
+
+            <p>📍 {{ college[2] }}</p>
+
+            <p>🎓 {{ college[3] }} - {{ college[4] }}</p>
+
+            <hr>
+
+            <p>📈 Placement Rate</p>
+
+            <h3>{{ college[8] }}</h3>
+
+            <p>💰 Average Package</p>
+
+            <h3>{{ college[6] }} LPA</h3>
+
+            <p>🏆 Highest Package</p>
+
+            <h3>{{ college[7] }}</h3>
+
+            <p>⭐ ROI Score</p>
+
+            <h3>{{ college[9] }}</h3>
+
+            <a href="/college/{{ college[0] }}" class="btn">
+
+                View Details
+
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}
