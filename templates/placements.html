@@ -13,10 +13,34 @@
 </div>
 
 <div class="page-container">
+    <div class="placement-summary">
+
+    <div class="summary-card">
+        <h2>{{ colleges|length }}</h2>
+        <p>Colleges Compared</p>
+    </div>
+
+    <div class="summary-card">
+        <h2>51 LPA</h2>
+        <p>Highest Package</p>
+    </div>
+
+    <div class="summary-card">
+        <h2>97%</h2>
+        <p>Best Placement</p>
+    </div>
+
+    <div class="summary-card">
+        <h2>14 LPA</h2>
+        <p>Top Avg Package</p>
+    </div>
+
+</div>
 
     <div class="placement-grid">
 
         {% for college in colleges %}
+        
 
         <div class="placement-card">
 
@@ -46,7 +70,7 @@
 
             <a href="/college/{{ college[0] }}" class="btn">
 
-                View Details
+               🔍  View Details
 
             </a>
 
